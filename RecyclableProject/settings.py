@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "main.apps.MainConfig",
+    "classify.apps.MainConfig",
     "qnaboard.apps.QnaboardConfig",
     "user.apps.UserConfig",
 ]

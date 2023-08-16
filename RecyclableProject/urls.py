@@ -21,7 +21,7 @@ urlpatterns = [
     path("", TemplateView.as_view(template_name="home.html"),
          name='home'),
     path("admin/", admin.site.urls),
-    # path("main/", include("main.urls")),
+    # path("classify/", include("classify.urls")),
     # path("user/", include("user.urls")),
     # path("qnaboard/", include("qnaboard.urls")),
 ]
