@@ -14,7 +14,7 @@ from pathlib import Path
 
 from django.conf.global_settings import AUTH_USER_MODEL
 
-AUTH_USER_MODEL = "user.User"
+AUTH_USER_MODEL = "users.User"
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "classify.apps.MainConfig",
     "qnaboard.apps.QnaboardConfig",
-    "user.apps.UserConfig",
+    "users.apps.UserConfig",
 ]
 
 MIDDLEWARE = [

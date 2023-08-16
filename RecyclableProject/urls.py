@@ -22,6 +22,6 @@ urlpatterns = [
          name='home'),
     path("admin/", admin.site.urls),
     # path("classify/", include("classify.urls")),
-    # path("user/", include("user.urls")),
+    # path("users/", include("users.urls")),
     # path("qnaboard/", include("qnaboard.urls")),
 ]
