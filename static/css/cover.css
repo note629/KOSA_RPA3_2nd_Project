@@ -1,0 +1,61 @@
+.gradient-custom {
+  /* fallback for old browsers */
+  background: #a6ca99;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(
+    to right,
+    rgb(219, 238, 212),
+    rgb(239, 252, 235)
+  );
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, rgb(219, 238, 212), rgb(239, 252, 235));
+}
+
+.bg-maintheme {
+  background-color: #a6ca99;
+}
+
+.logo {
+  text-align: center !important;
+}
+
+.logo img {
+  width: 154px; /* 원하는 너비로 변경하세요 */
+  height: 83px; /* 높이를 자동으로 조절하려면 auto를 사용하세요 */
+}
+
+.navbar-nav,
+.ml-auto {
+  margin-left: auto;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-menu a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
