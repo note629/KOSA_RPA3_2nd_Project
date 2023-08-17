@@ -14,7 +14,11 @@ from pathlib import Path
 
 from django.conf.global_settings import AUTH_USER_MODEL
 
-AUTH_USER_MODEL = "users.User"
+AUTH_USER_MODEL = "users.User"  # 사용자 인증 및 권한 관리를 위한 User 모델 지정
+ACCOUNT_AUTHENTICATION_METHOD = "email"  # 로그인시 username 이 아니라 email을 사용하게 하는 설정
+ACCOUNT_EMAIL_REQUIRED = True  # 회원가입시 필수 이메일을 필수항목으로 만들기
+ACCOUNT_USERNAME_REQUIRED = True  # USERNAME 을 필수항목에서 제거
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,10 +45,23 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.sites",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
     "classify.apps.MainConfig",
     "qnaboard.apps.QnaboardConfig",
     "users.apps.UserConfig",
 ]
+
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = {
+    # Django 관리자에서 사용자 이름으로 로그인하기 위해 필요한 ModelBackend 인증 (allauth와 무관)
+    "django.contrib.auth.backends.ModelBackend",
+    # allauth 특화 인증 메소드, 이메일로 로그인하기 위한 AuthenticationBackend
+    "allauth.account.auth_backends.AuthenticationBackend",
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -81,13 +98,13 @@ WSGI_APPLICATION = "RecyclableProject.wsgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'recyclable_db',
-        'USER': 'root',
-        'PASSWORD': 'test1234',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "recyclable_db",
+        "USER": "root",
+        "PASSWORD": "test1234",
+        "HOST": "127.0.0.1",
+        "PORT": "3306",
     }
 }
 
