@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block html_body %}
+
+<script src="/static/js/menu_btn.js"></script>
+<div class="container">
+
+  <h1>새글작성</h1>
+    <form method="post">
+        {% csrf_token %}
+{#        {{ board_form }}#}
+        {% bootstrap_form board_form %}
+        <button type="submit" class="btn btn-primary">등록</button>
+        <button type="submit" class="btn btn-secondary"
+        onclick="go_to_list()">
+            리스트로 돌아가기
+        </button>
+
+
+    </form>
+</div>
+
+{% endblock %}
