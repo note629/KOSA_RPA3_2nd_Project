@@ -1,18 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <title>Pharma &mdash; Colorlib Template</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Crimson+Text:400,400i" rel="stylesheet">
-  <link rel="stylesheet" href="/static/css/style.css">
-
-</head>
-
-<body>
-  <div class="site-wrap">
+{% extends "base.html" %}
+{% block html_header %}{% endblock %}
+{% block html_body %}  <div class="site-wrap">
     <div class="site-section">
       <div class="container">
         <div class="row">
@@ -20,7 +8,7 @@
             <h2 class="h3 mb-5 text-black">QnA 및 인증사항을 작성해주세요</h2>
           </div>
           <div class="col-md-12">
-    
+
             <form method="post">
             {% csrf_token %}
                 {{ post_form }}
@@ -34,7 +22,4 @@
         </div>
       </div>
     </div>
-  </div>
-</body>
-
-</html>
+  </div>{% endblock %}

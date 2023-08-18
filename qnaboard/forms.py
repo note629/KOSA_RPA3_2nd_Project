@@ -5,8 +5,8 @@ from qnaboard.models import Post
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        # fields = ["p_title", "user", "p_content"]
-        fields = ["qb_title", "qb_content"]
+        fields = ["qb_title", "user", "qb_content"]
+        # fields = ["qb_title", "qb_content"]
 
         # labels = {
         #     "p_title": "제목",
