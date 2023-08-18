@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block html_header %}{% endblock %}
+{% block html_body %}
+    <h1>Sign up</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!--        {% if form.errors %}<span style="color : red">{{ form.errors }}</span>{% endif %}-->
+        {% if form.errors %}
+            <ul style="color : red">
+                {% for field in form %}
+                    {% for error in field.errors %}<li>{{ error }}</li>{% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}<li>{{ error }}</li>{% endfor %}
+            </ul>
+        {% endif %}
+        <p>
+            <label for="id_username">닉네임:</label>
+            <input type="text" name="username" minlength="2" required id="id_username">
+        </p>
+        <p>
+            <label for="id_email">이메일:</label>
+            <input type="email" name="email" required id="id_email">
+        </p>
+        <p>
+            <label for="id_password1">비밀번호:</label>
+            <input type="password"
+                   name="password1"
+                   minlength="4"
+                   required
+                   id="id_password1">
+        </p>
+        <p>
+            <label for="id_password2">비밀번호 재확인:</label>
+            <input type="password"
+                   name="password2"
+                   minlength="4"
+                   required
+                   id="id_password2">
+        </p>
+        <button type="submit">회원가입</button>
+    </form>
+{% endblock %}
