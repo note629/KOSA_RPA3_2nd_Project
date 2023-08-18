@@ -23,4 +23,5 @@ urlpatterns = [
     path("users/", include("users.urls")),
     # path("classify/", include("classify.urls")),
     # path("qnaboard/", include("qnaboard.urls")),
+    path("activity/", include("activity.urls")),
 ]

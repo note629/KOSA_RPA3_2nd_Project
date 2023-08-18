@@ -13,4 +13,4 @@ class RecycleLog(models.Model):
     classify_item = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.user
+        return self.classify_item

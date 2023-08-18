@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "classify.apps.MainConfig",
     "qnaboard.apps.QnaboardConfig",
     "users.apps.UserConfig",
+    "activity.apps.ActivityConfig",
 ]
 
 SITE_ID = 1
