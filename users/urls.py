@@ -5,5 +5,7 @@ from users import views
 app_name = "users"
 
 urlpatterns = [
-    path("login/", views.login_view, name="login_view"),  # login_view 맵핑
+    path("login/", views.login_view, name="login_view"),
+    path("logout/", views.logout_view, name="logout_view"),
+    path("signup/", views.signup, name="signup"),
 ]
