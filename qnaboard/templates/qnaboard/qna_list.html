@@ -2,37 +2,39 @@
 {% block html_header %}{% endblock %}
 {% block html_body %}
     <body class="demo">
-  <div class="container">
-    <h1>QnA</h1><br>
-    <h5>질문과 인증 게시판이에요</h5><br>
-    <div class="scroll-window-wrapper">
-      <div class="scroll-window">
-        <table class="table is-fixed-header">
-          <thead>
-            <th scope="col" data-th="No.">No.</th>
-            <th scope="col" data-th="내용">내용</th>
-            <th scope="col" data-th="작성자">작성자</th>
-            <th scope="col" data-th="작성일">작성일</th>
-            <th scope="col" data-th="조회수">조회수</th>
-          </thead>
+    <div class="container">
+        <h1>QnA</h1><br>
+        <h5>질문과 인증 게시판이에요</h5><br>
 
+        <!-- 글쓰기 버튼을 추가하고 링크 생성 -->
+        <a href="{% url 'qnaboard:create' %}" class="btn btn-primary">글쓰기</a><br><br>
 
-          {% for post in posts %}
-        <tr>
-            <td>{{ post.id }}</td>
-            <td>{{ post.qb_title }}</td>
-            <td>{{ post.user }}</td>
-            <td>{{ post.qb_date }}</td>
-            <td>{{ post.qb_view_count }}</td>
-        </tr>
-        {% endfor %}
-
-          </tbody>
-        </table>
-      </div>
+        <div class="scroll-window-wrapper">
+            <div class="scroll-window">
+                <table class="table is-fixed-header">
+                    <thead>
+                    <tr>
+                        <th scope="col" data-th="No.">No.</th>
+                        <th scope="col" data-th="제목">제목</th>
+                        <th scope="col" data-th="작성자">작성자</th>
+                        <th scope="col" data-th="작성일">작성일</th>
+                        <th scope="col" data-th="조회수">조회수</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for post in posts %}
+                    <tr>
+                        <td>{{ post.id }}</td>
+                        <td><a href="{% url 'qnaboard:read' post.id %}">{{ post.qb_title }}</a></td>
+                        <td>{{ post.user }}</td>
+                        <td>{{ post.qb_date }}</td>
+                        <td>{{ post.qb_view_count }}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-  </div>
-</body>
+    </body>
 {% endblock %}
-
-
