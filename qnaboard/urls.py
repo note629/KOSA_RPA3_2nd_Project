@@ -7,6 +7,8 @@ app_name = "qnaboard"
 
 ## 현재 URL => http://127.0.0.1:8000/qnaboard
 urlpatterns = [
-    path("list/", views.p_list, name="list"),
-    path("create/", views.p_create, name="create"),
+    path("list/", views.qb_list, name="list"),
+    path("<int:post_id>/", views.qb_read, name="read"),
+    path("create/", views.qb_create, name="create"),
+    path("update/<int:post_id>/", views.qb_update, name="update"),
 ]
