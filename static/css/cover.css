@@ -31,6 +31,17 @@
   margin-left: auto;
 }
 
+.nav-item {
+  font-size: 2em;
+  color: #a6ca99;
+}
+
+.nav-item-user {
+  color: #a6ca99;
+  font-size: 2em;
+  font-weight: bold;
+}
+
 .dropdown {
   position: relative;
   display: inline-block;

@@ -71,6 +71,19 @@
                             <li class="nav-item">
                                 <a href="/" class="nav-link">QnA</a>
                             </li>
+
+                            {% if user.is_authenticated %}
+                                <li class="nav-item-user">
+                                    <a href="{% url 'users:logout_view' %}" class="nav-link">Logout</a>
+                                </li>
+                            {% else %}
+                                <li class="nav-item-user">
+                                    <a href="{% url 'users:login_view' %}" class="nav-link">Login</a>
+                                </li>
+                                <li class="nav-item-user">
+                                    <a href="{% url 'users:signup' %}" class="nav-link">Sign up</a>
+                                </li>
+                            {% endif %}
  
                         </ul>
  
