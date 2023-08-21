@@ -21,7 +21,12 @@
   text-align: center !important;
 }
 
-.logo img {
+.mypage-status-ico {
+  width: 45px;
+  height: 45px;
+}
+
+.mainlogo {
   width: 154px; /* 원하는 너비로 변경하세요 */
   height: 83px; /* 높이를 자동으로 조절하려면 auto를 사용하세요 */
 }
@@ -69,4 +74,30 @@
 
 .dropdown:hover .dropdown-menu {
   display: block;
+}
+
+.errorlist {
+  color: red;
+}
+.mypage-main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.mypage-section-a {
+  width: 25%;
+  margin: 30px;
+}
+
+.mypage-section-b {
+  width: 20%;
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.mypage-section-obj {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
