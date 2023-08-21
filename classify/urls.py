@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from . import views
 
 app_name = "classify"
 
 urlpatterns = [
-
+    path("test/", views.test_yolo, name="test_yolo"),
 ]
