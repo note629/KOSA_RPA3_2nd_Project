@@ -32,14 +32,14 @@
                 <div class="container">
                     <div class="logo">
                         <a href="/">
-                            <img src="/static/image/logo.png" alt="#" />
+                            <img class="mainlogo" src="/static/image/logo.png" alt="#" />
                         </a>
                     </div>
- 
+
                     <div class="collapse navbar-collapse" id="ftco-nav">
- 
+
                         <ul class="navbar-nav ml-auto">
- 
+
                             <li class="nav-item active">
                                 <a href="/" class="nav-link">HOME</a>
                             </li>
@@ -56,25 +56,27 @@
                                    aria-haspopup="true"
                                    aria-expanded="false">ACTIVITY</a>
                                 <div class="dropdown-menu" aria-labelledby="dropdown04">
-                                    <a class="dropdown-item" href="/">RECYCLE</a>
-                                    <a class="dropdown-item" href="/">ACTIVITY</a>
-                                    <a class="dropdown-item" href="/">STORE MAP</a>
-                                    <a class="dropdown-item" href="/">QnA</a>
+                                    <a class="dropdown-item" href="{% url 'activity:user_rank' %}">USER RANK</a>
+                                    <a class="dropdown-item" href="/">폐쇄</a>
+
                                     <!--                                    로그인 버튼추가예졍-->
                                 </div>
                             </li>
- 
+
                             <li class="nav-item">
                                 <a href="/" class="nav-link">STORE MAP</a>
                             </li>
- 
+
                             <li class="nav-item">
-                                <a href="/qnaboard/list/" class="nav-link">QnA</a>
+                                <a href="{% url 'qnaboard:list' %}" class="nav-link">QnA</a>
                             </li>
 
                             {% if user.is_authenticated %}
                                 <li class="nav-item-user">
                                     <a href="{% url 'users:logout_view' %}" class="nav-link">Logout</a>
+                                </li>
+                                <li class="nav-item-user">
+                                    <a href="{% url 'users:mypage_view' %}" class="nav-link">MyPage</a>
                                 </li>
                             {% else %}
                                 <li class="nav-item-user">
