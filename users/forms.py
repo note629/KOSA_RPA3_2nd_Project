@@ -1,4 +1,6 @@
 from django import forms
+from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.core.exceptions import ValidationError
 
 from users.models import User
@@ -51,3 +53,66 @@ class SignupForm(forms.Form):
             username=username, password=password1, email=email
         )
         return user
+
+
+class MypageForm(UserChangeForm):
+    password = None
+
+    username = forms.CharField(
+        label="닉네임",
+        widget=forms.TextInput(
+            attrs={
+                "class": "form-control",
+                "minlength": "2",
+            }
+        ),
+    )
+    email = forms.EmailField(
+        label="이메일",
+        widget=forms.EmailInput(
+            attrs={
+                "class": "form-control",
+            }
+        ),
+    )
+
+    class Meta:
+        model = User()
+        fields = ["username", "email"]
+
+
+class CustomPasswordChangeForm(PasswordChangeForm):
+    old_password = forms.CharField(
+        label="기존 비밀번호",
+        widget=forms.PasswordInput(
+            attrs={"class": "form-control", "placeholder": "기존 비밀번호"},
+        ),
+    )
+    new_password1 = forms.CharField(
+        label="새 비밀번호",
+        widget=forms.PasswordInput(
+            attrs={"class": "form-control", "placeholder": "새 비밀번호"},
+        ),
+    )
+    new_password2 = forms.CharField(
+        label="새 비밀번호 재확인",
+        widget=forms.PasswordInput(
+            attrs={"class": "form-control", "placeholder": "새 비밀번호 재확인"},
+        ),
+    )
+
+    def clean(self):
+        old_password = self.cleaned_data.get("old_password")
+        new_password1 = self.cleaned_data.get("new_password1")
+
+        if old_password == new_password1:
+            self.add_error(
+                "old_password",
+                forms.ValidationError("기존 비밀번호와 새 비밀번호가 서로 달라야 합니다"),
+            )
+        else:
+            return self.cleaned_data
+
+    class Meta:
+        model = get_user_model()
+        fields = ["old_password", "new_password1", "new_password2"]
