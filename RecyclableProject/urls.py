@@ -26,4 +26,5 @@ urlpatterns = [
     # path("users/", include("users.urls")),
     # path("qnaboard/", include("qnaboard.urls")),
     path("activity/", include("activity.urls")),
+    path("storemap/", include("storemap.urls")),
 ]
