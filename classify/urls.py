@@ -10,4 +10,4 @@ app_name = "classify"
 urlpatterns = [
     path("", views.image_upload, name="image_upload"),
     path("result/", views.classify_yolo, name="classify_yolo"),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
