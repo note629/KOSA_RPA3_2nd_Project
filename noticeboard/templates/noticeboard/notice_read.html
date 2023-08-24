@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block html_header %}{% endblock %}
+{% block html_body %}
+    <body>
+        {% if notice %}
+            <h1>{{ notice.nb_title }}</h1>
+            <p>작성일: {{ notice.nb_date }}</p>
+            <p>{{ notice.nb_content }}</p>
+            <!-- 이미지 보여주기 -->
+            {% if notice.nb_image %}
+                <img src="{{ notice.nb_image.url }}" width="500px" height="300px">
+                <br>
+                <br>
+            {% endif %}
+            <a href="{% url 'noticeboard:notice_list' %}">목록</a>
+        {% else %}
+            <p>해당 게시글을 찾을 수 없습니다.</p>
+        {% endif %}
+    {% endblock %}
