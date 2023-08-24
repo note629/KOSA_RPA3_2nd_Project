@@ -124,6 +124,8 @@ def classify_yolo(request):
     results_acc = round(float(result_list_split_acc) * 100, 2)
     print(image_file)
     if float(result_list_split_acc) > 0.5:
+        latest_log.classify_item = str(result_list_split_obj)
+        latest_log.save()
         txt_result.close()
         context = {
             "result_obj_split_name": result_obj_split_name,
