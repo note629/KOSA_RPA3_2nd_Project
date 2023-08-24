@@ -12,4 +12,14 @@ urlpatterns = [
     path("create/", views.qb_create, name="create"),
     path("update/<int:post_id>/", views.qb_update, name="update"),
     path("delete/<int:post_id>/", views.qb_delete, name="delete"),
+    path(
+        "read/update/<int:post_id>/<int:comment_id>",
+        views.qbc_update,
+        name="update_comment",
+    ),
+    path(
+        "read/delete/<int:post_id>/<int:comment_id>",
+        views.qbc_delete,
+        name="delete_comment",
+    ),
 ]

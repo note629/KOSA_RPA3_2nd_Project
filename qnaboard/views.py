@@ -103,3 +103,26 @@ def qb_delete(request, post_id):
 
 #     except Post.DoesNotExist:
 #         return HttpResponse("해당 게시물을 찾을 수 없습니다.")
+
+
+def qbc_update(request, post_id, comment_id):
+    post = Post.objects.get(id=post_id)
+    comment = Comment.objects.get(id=comment_id)
+
+    if request.method == "POST":
+        comment_content = request.POST.get("comment_content")
+        comment.qc_content = comment_content
+        comment.save()
+
+    return redirect("qnaboard:read", post_id=post.id)
+
+
+def qbc_delete(request, post_id, comment_id):
+    post = Post.objects.get(id=post_id)
+    comment = Comment.objects.get(id=comment_id)
+    if request.user != comment.user:
+        raise PermissionDenied
+
+    comment.delete()
+
+    return redirect("qnaboard:read", post_id=post.id)
