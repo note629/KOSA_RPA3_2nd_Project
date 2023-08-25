@@ -32,11 +32,16 @@ def qb_list(request):
 def qb_read(request, post_id):
     try:
         post = Post.objects.get(id=post_id)
+
     except Post.DoesNotExist:
         return HttpResponse("해당 게시물을 찾을 수 없습니다.")
 
     comments = Comment.objects.filter(post=post)
     context = {"post": post, "comments": comments}
+
+    # 조회 수 증가
+    post.qb_view_count += 1
+    post.save()
 
     if request.user.is_authenticated:
         if request.method == "POST":

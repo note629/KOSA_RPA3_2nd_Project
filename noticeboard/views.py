@@ -17,6 +17,11 @@ def nb_list(request):
 def nb_read(request, notice_id):
     notice = Notice.objects.get(id=notice_id)
     context = {"notice": notice}
+
+    # 조회 수 증가
+    notice.nb_view_count += 1
+    notice.save()
+
     return render(request, "noticeboard/notice_read.html", context)
 
 
