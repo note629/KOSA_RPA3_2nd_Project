@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block html_header %}{% endblock %}
+{% block html_body %}
+    <section>
+        <div>
+            <h2>가장 최근 업로드된 이미지 URL</h2>
+            {% if result_obj_split_name %}
+                <img src="{{ img_url }}" width="300px">
+                <p>제품 분류: {{ result_obj_split_name }}</p>
+                <p>제품 상태: {{ result_obj_split_dame }}, {{ result_obj_split_dirt }}</p>
+                <p>정확도: {{ results_acc }}%</p>
+            {% else %}
+                <img src="{{ img_url }}" width="300px">
+                <p>대상을 분류하기 어렵습니다</p>
+                <p>정확도: {{ results_acc }}%</p>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

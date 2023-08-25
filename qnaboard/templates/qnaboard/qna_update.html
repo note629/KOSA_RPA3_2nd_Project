@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block html_header %}{% endblock %}
+{% block html_body %}
+    <body class="demo">
+    <div class="container">
+        <h1>게시물 수정</h1><br>
+        <form method="post">
+            {% csrf_token %}
+            {{ updateForm.as_p }}
+            <button type="submit">수정 완료</button>
+        </form>
+    </div>
+    </body>
+{% endblock %}
