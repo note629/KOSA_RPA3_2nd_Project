@@ -12,7 +12,17 @@
                 <br>
                 <br>
             {% endif %}
-            <a href="{% url 'noticeboard:notice_list' %}">목록</a>
+
+            <div class="post-actions">
+                <button type="button"
+                        onclick="location.href='/noticeboard/list/'"
+                        class="button">목록</button>
+                {% if request.user.is_superuser %}
+                    <a href="/noticeboard/update/{{ notice.id }}" class="button secondary">수정</a>
+                    <a href="/noticeboard/delete/{{ notice.id }}" class="button delete">삭제</a>
+                {% endif %}
+            </div>
+
         {% else %}
             <p>해당 게시글을 찾을 수 없습니다.</p>
         {% endif %}

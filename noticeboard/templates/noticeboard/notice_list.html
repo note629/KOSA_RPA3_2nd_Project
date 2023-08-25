@@ -2,6 +2,17 @@
 {% block html_header %}{% endblock %}
 {% block html_body %}
     <h1>공지사항</h1>
+    <br>
+
+    <!-- 글쓰기 버튼을 추가하고 링크 생성 -->
+    {% if request.user.is_superuser %}
+        <a href="{% url 'noticeboard:create' %}" class="btn btn-primary">공지 작성</a></a>
+        <br>
+        <br>
+    {% endif %}
+
+ 
+
     <table class="table is-fixed-header">
         <thead>
             <tr>
@@ -13,7 +24,7 @@
         </thead>
         <tbody>
             {% for notice in notices %}
-                <tr onclick="window.location='{% url 'noticeboard:notice_read' notice.id %}'"
+                <tr onclick="window.location='{% url 'noticeboard:read' notice.id %}'"
                     style="cursor: pointer">
                     <td>{{ notice.id }}</td>
                     <td>{{ notice.nb_title }}</td>
