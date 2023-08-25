@@ -79,7 +79,9 @@ def qb_update(request, post_id):
     post = Post.objects.get(id=post_id)
 
     if request.method == "POST":
-        post_form = PostForm(request.POST, instance=post, user=request.user)
+        post_form = PostForm(
+            request.POST, request.FILES, instance=post, user=request.user
+        )
 
         if post_form.is_valid():
             post_form.save()
