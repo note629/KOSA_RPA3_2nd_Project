@@ -6,6 +6,7 @@ class Post(models.Model):
     user = models.ForeignKey("users.User", verbose_name="작성자", on_delete=models.CASCADE)
     qb_title = models.CharField(verbose_name="제목", max_length=30)
     qb_content = models.TextField("내용")
+    qb_image = models.ImageField(upload_to="qnaboard/", blank=True, null=True)
     qb_date = models.DateTimeField("작성일", auto_now_add=True)
     qb_view_count = models.IntegerField(verbose_name="조회수", default=0)
 

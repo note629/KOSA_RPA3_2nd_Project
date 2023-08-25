@@ -17,9 +17,9 @@
   background-color: #a6ca99;
 }
 
-.logo {
-  text-align: center !important;
-}
+/*.logo {*/
+/*  text-align: center !important;*/
+/*}*/
 
 .mypage-status-ico {
   width: 45px;
@@ -27,24 +27,21 @@
 }
 
 .mainlogo {
-  width: 154px; /* 원하는 너비로 변경하세요 */
-  height: 83px; /* 높이를 자동으로 조절하려면 auto를 사용하세요 */
+  margin-top: 10px;
+  width: auto; /* 원하는 너비로 변경하세요 */
+  height: 45px; /* 높이를 자동으로 조절하려면 auto를 사용하세요 */
 }
 
 .navbar-nav,
 .ml-auto {
+  --bs-nav-link-hover-color: #ffc107;
   margin-left: auto;
 }
 
 .nav-item {
   font-size: 2em;
-  color: #a6ca99;
-}
-
-.nav-item-user {
-  color: #a6ca99;
-  font-size: 2em;
   font-weight: bold;
+  color: #a6ca99;
 }
 
 .dropdown {
@@ -62,7 +59,7 @@
 }
 
 .dropdown-menu a {
-  color: black;
+  color: #000000;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
@@ -266,4 +263,54 @@
   font-weight: bold;
   cursor: default;
   color: #777;
+}
+
+.nav_button {
+  display: block;
+  font-weight: bold;
+  margin-right: 12.5px;
+  margin-left: 12.5px;
+  margin-top: 1%;
+  text-align: center;
+  line-height: 40px;
+  text-decoration: none;
+  color: white;
+  background-color: #c9e5bf;
+  border-radius: 4px;
+  /*position: absolute;*/
+  width: 80px;
+  height: 40px;
+  text-shadow: 0 -1px -1px #a6ca99;
+  -webkit-box-shadow:
+    0 4px 0 #a6ca99,
+    0 5px 5px 1px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow:
+    0 4px 0 #a6ca99,
+    0 5px 5px 1px rgba(0, 0, 0, 0.4);
+  box-shadow:
+    0 4px 0 #a6ca99,
+    0 5px 5px 1px rgba(0, 0, 0, 0.4);
+  -webkit-transition: all 0.15s ease-in-out;
+  -moz-transition: all 0.15s ease-in-out;
+  -o-transition: all 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out;
+}
+.nav_button:hover {
+  background-color: #dbeed4;
+  text-shadow: 0 -1px -1px rgba(166, 202, 153, 0.76);
+  -webkit-box-shadow:
+    0 4px 0 rgba(166, 202, 153, 0.76),
+    0 5px 5px 1px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow:
+    0 4px 0 rgba(166, 202, 153, 0.76),
+    0 5px 5px 1px rgba(0, 0, 0, 0.4);
+  box-shadow:
+    0 4px 0 rgba(166, 202, 153, 0.76),
+    0 5px 5px 1px rgba(0, 0, 0, 0.4);
+}
+.nav_button:active {
+  margin-top: -18px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }

@@ -28,5 +28,6 @@ urlpatterns = [
     path("activity/", include("activity.urls")),
     path("storemap/", include("storemap.urls")),
 ]
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

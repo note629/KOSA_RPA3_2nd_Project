@@ -1,6 +1,10 @@
+import random
+
 from django.shortcuts import render
 from users.models import RecycleLog
 from random import randrange
+
+from users.models import RecycleLog
 
 
 def storemap_view(request):
