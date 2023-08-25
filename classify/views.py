@@ -4,6 +4,7 @@ import shutil
 
 from django.shortcuts import render, redirect
 from ultralytics import YOLO
+from urllib.parse import quote, unquote
 
 from classify.forms import ClassifyForm
 from users.models import RecycleLog
@@ -88,7 +89,8 @@ def classify_yolo(request):
 
     latest_log = (
         RecycleLog.objects.filter(user_id=request.user.id).order_by("-use_date").first()
-    )  # /media/recycle_img/374745_01002_220728_P1_T1.jpg
+    )
+    # /media/recycle_img/374745_01002_220728_P1_T1.jpg
     # print(latest_log.input_img.url)
     image_url = latest_log.input_img.url
     image_file = image_url.split("/")[-1]
@@ -97,8 +99,12 @@ def classify_yolo(request):
     print(image_file_name)
     if os.path.isfile("runs/detect/results/labels/" + image_file_name + ".txt"):
         os.remove("runs/detect/results/labels/" + image_file_name + ".txt")
+    copied_url = "media/recycle_img_copy/" + image_file
+    print(unquote(image_url))
+    print(quote(copied_url))
+    shutil.copy(unquote(image_url[1:]), quote(copied_url))
     results = ai_model(
-        image_url[1:],
+        quote(copied_url),
         save_txt=True,
         save_conf=True,
         # conf=0.5,
@@ -109,36 +115,49 @@ def classify_yolo(request):
 
     from_file_path = "runs/detect/results/" + image_file  # 복사할 파일
     to_file_path = "media/classify_img/" + image_file  # 복사 위치 및 파일 이름 지정
-    shutil.copy(from_file_path, to_file_path)
+    shutil.copy(quote(from_file_path), unquote(to_file_path))
 
-    txt_result = open("runs/detect/results/labels/" + image_file_name + ".txt", "r")
-    # print(txt_result.readlines())
-    result_list = [line for line in txt_result.readlines()]
-    result_list_split_obj = (result_list[0].split(" "))[0]
-    result_list_split_acc = (result_list[0].split(" "))[-1]
-
-    result_obj = classify_list[int(result_list_split_obj)]
-    result_obj_split_name = (result_obj.split("_"))[0]
-    result_obj_split_dame = (result_obj.split("_"))[1]
-    result_obj_split_dirt = (result_obj.split("_"))[2]
-    results_acc = round(float(result_list_split_acc) * 100, 2)
-    print(image_file)
-    if float(result_list_split_acc) > 0.5:
-        latest_log.classify_item = str(result_list_split_obj)
-        latest_log.save()
+    if os.path.isfile(quote("runs/detect/results/labels/" + image_file_name + ".txt")):
+        os.rename(
+            quote("runs/detect/results/labels/" + image_file_name + ".txt"),
+            unquote("runs/detect/results/labels/" + image_file_name + ".txt"),
+        )
+        txt_result = open(
+            unquote("runs/detect/results/labels/" + image_file_name + ".txt"), "r"
+        )
+        # print(txt_result.readlines())
+        result_list = [line for line in txt_result.readlines()]
         txt_result.close()
-        context = {
-            "result_obj_split_name": result_obj_split_name,
-            "result_obj_split_dame": result_obj_split_dame,
-            "result_obj_split_dirt": result_obj_split_dirt,
-            "results_acc": results_acc,
-            "img_url": "/media/classify_img/" + image_file,
-            "latest_log": latest_log,
-        }
+        result_list_split_obj = (result_list[0].split(" "))[0]
+        result_list_split_acc = (result_list[0].split(" "))[-1]
+
+        result_obj = classify_list[int(result_list_split_obj)]
+        result_obj_split_name = (result_obj.split("_"))[0]
+        result_obj_split_dame = (result_obj.split("_"))[1]
+        result_obj_split_dirt = (result_obj.split("_"))[2]
+        results_acc = round(float(result_list_split_acc) * 100, 2)
+        print(image_file)
+        if float(result_list_split_acc) > 0.5:
+            latest_log.classify_item = str(result_list_split_obj)
+            latest_log.save()
+            # txt_result.close()
+            context = {
+                "result_obj_split_name": result_obj_split_name,
+                "result_obj_split_dame": result_obj_split_dame,
+                "result_obj_split_dirt": result_obj_split_dirt,
+                "results_acc": results_acc,
+                "img_url": unquote("/media/classify_img/" + image_file),
+                "latest_log": latest_log,
+            }
+        else:
+            context = {
+                "img_url": unquote("/media/classify_img/" + image_file),
+                "results_acc": results_acc,
+            }
     else:
         context = {
-            "img_url": "/media/classify_img/" + image_file,
-            "results_acc": results_acc,
+            "img_url": unquote("/media/classify_img/" + image_file),
+            "results_acc": 0.0,
         }
 
     return render(request, "classify/classify_result.html", context)
