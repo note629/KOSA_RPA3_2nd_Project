@@ -14,11 +14,7 @@ from pathlib import Path
 
 from django.conf.global_settings import AUTH_USER_MODEL
 
-AUTH_USER_MODEL = "users.User"  # 사용자 인증 및 권한 관리를 위한 User 모델 지정
-ACCOUNT_AUTHENTICATION_METHOD = "email"  # 로그인시 username 이 아니라 email을 사용하게 하는 설정
-ACCOUNT_EMAIL_REQUIRED = True  # 회원가입시 필수 이메일을 필수항목으로 만들기
-ACCOUNT_USERNAME_REQUIRED = True  # USERNAME 을 필수항목에서 제거
-
+AUTH_USER_MODEL = "user.User"
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -35,6 +31,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -44,36 +41,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django.contrib.sites",
-    "allauth",
-    "allauth.account",
-    "allauth.socialaccount",
     "classify.apps.MainConfig",
     "qnaboard.apps.QnaboardConfig",
-    "users.apps.UserConfig",
-    "activity.apps.ActivityConfig",
-    "storemap.apps.StoremapConfig",
-    "corsheaders",
+    "user.apps.UserConfig",
 ]
-
-SITE_ID = 1
-
-AUTHENTICATION_BACKENDS = {
-    # Django 관리자에서 사용자 이름으로 로그인하기 위해 필요한 ModelBackend 인증 (allauth와 무관)
-    "django.contrib.auth.backends.ModelBackend",
-    # allauth 특화 인증 메소드, 이메일로 로그인하기 위한 AuthenticationBackend
-    "allauth.account.auth_backends.AuthenticationBackend",
-}
-
-AUTH_PASSWORD_VALIDATORS = [
-    {"NAME": "users.validators.CustomPasswordValidator"},
-]
-
-ACCOUNT_PASSWORD_INPUT_RENDER_VALUE = True
 
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",
-    "django.middleware.common.CommonMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -108,33 +81,33 @@ WSGI_APPLICATION = "RecyclableProject.wsgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": "recyclable_db",
-        "USER": "root",
-        "PASSWORD": "test1234",
-        "HOST": "127.0.0.1",
-        "PORT": "3306",
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'recyclable_db',
+        'USER': 'root',
+        'PASSWORD': 'test1234',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
-# AUTH_PASSWORD_VALIDATORS = [
-#     {
-#         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
-#     },
-#     {
-#         "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
-#     },
-#     {
-#         "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
-#     },
-#     {
-#         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
-#     },
-# ]
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+    },
+]
 
 
 # Internationalization
@@ -155,14 +128,7 @@ USE_TZ = True
 STATIC_URL = "static/"
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
-# 모든 도메인에서의 무제한 액세스를 허용
-CORS_ALLOW_ALL_ORIGINS = True  # <- 모든 호스트 허용
-CORS_ALLOW_CREDENTIALS = True  # <-쿠키가 cross-site HTTP 요청에 포함될 수 있다
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
