@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block html_header %}{% endblock %}
+{% block html_body %}
+    <h1>공지사항</h1>
+    <br>
+
+    <!-- 글쓰기 버튼을 추가하고 링크 생성 -->
+    {% if request.user.is_superuser %}
+        <a href="{% url 'noticeboard:create' %}" class="btn btn-primary">공지 작성</a></a>
+        <br>
+        <br>
+    {% endif %}
+
+ 
+
+    <table class="table is-fixed-header">
+        <thead>
+            <tr>
+                <th scope="col">No.</th>
+                <th scope="col">제목</th>
+                <th scope="col">작성일</th>
+                <th scope="col">조회수</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for notice in notices %}
+                <tr onclick="window.location='{% url 'noticeboard:read' notice.id %}'"
+                    style="cursor: pointer">
+                    <td>{{ notice.id }}</td>
+                    <td>{{ notice.nb_title }}</td>
+                    <td>{{ notice.nb_date }}</td>
+                    <td>{{ notice.nb_view_count }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

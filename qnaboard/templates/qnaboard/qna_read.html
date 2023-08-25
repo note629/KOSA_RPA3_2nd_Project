@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block html_header %}{% endblock %}
+{% block html_body %}
+    <body>
+        {% if post %}
+            <h1>{{ post.qb_title }}</h1>
+            <p>작성자: {{ post.user }}</p>
+            <p>작성일: {{ post.qb_date }}</p>
+            <p>{{ post.qb_content }}</p>
+            {% if post.qb_image %}<img src="{{ post.qb_image.url }}" width="300px">{% endif %}
+            <br>
+
+
+            <a href="/qnaboard/list">목록</a>
+            {% if post.user == request.user %}
+                <a href="/qnaboard/update/{{ post.id }}">수정</a>
+                <a href="/qnaboard/delete/{{ post.id }}">삭제</a>
+            {% endif %}
+        {% else %}
+            <p>해당 게시글을 찾을 수 없습니다.</p>
+        {% endif %}
+        <br>
+        <!-- 댓글 -->
+        {% if request.user.is_authenticated %}
+            <br>
+            <h2>댓글 작성</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ comment_form.as_p }}
+                <button type="submit">댓글 작성</button>
+            </form>
+        {% endif %}
+
+        <h2>댓글 목록</h2>
+        {% for comment in comments %}
+            <p>{{ comment.user }}</p>
+            <p>{{ comment.qc_content }}</p>
+            <p>{{ comment.qc_date }}</p>
+        {% endfor %}
+    </body>
+{% endblock %}

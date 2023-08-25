@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block html_header %}{% endblock %}
+{% block html_body %}
+    <div class="site-wrap">
+        <div class="site-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="h3 mb-5 text-black">QnA 및 인증사항을 작성해주세요</h2>
+                    </div>
+                    <div class="col-md-12">
+
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ post_form }}
+                            <div class="form-group row">
+                                <div class="col-lg-12">
+                                    <br>
+                                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="저장">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
