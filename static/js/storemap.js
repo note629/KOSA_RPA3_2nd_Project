@@ -86,6 +86,7 @@ $(document).ready(function () {
         map.setCenter(
           new kakao.maps.LatLng(myLocation.latitude, myLocation.longitude),
         );
+        map.setLevel(8);
       } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
         alert("검색 결과가 존재하지 않습니다.");
         return;
