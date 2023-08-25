@@ -66,20 +66,21 @@ def mypage_view(request):
         user = request.user
         user_name = User.objects.get(id=request.user.id)
         ###############################################################################
-        logs_num_list52 = []
-        for i in range(52):
-            logs_num_list52.append(
-                len(list(RecycleLog.objects.filter(user=user, classify_item=str(i))))
-            )
-        total_logs_num = RecycleLog.objects.count()
-        null_logs_num = total_logs_num - sum(logs_num_list52)
-        print(total_logs_num, logs_num_list52, null_logs_num)
+        if RecycleLog.objects.filter(user=user) != None:
+            logs_num_list52 = []
+            for i in range(52):
+                logs_num_list52.append(
+                    len(
+                        list(RecycleLog.objects.filter(user=user, classify_item=str(i)))
+                    )
+                )
+            total_logs_num = RecycleLog.objects.filter(user=user).count()
+            null_logs_num = total_logs_num - sum(logs_num_list52)
+            print(total_logs_num, logs_num_list52, null_logs_num)
 
-        logs_num_list13 = []
-        for i in range(13):
-            logs_num_list13.append(sum(logs_num_list52[4 * i : 4 * (i + 1)]))
-        ###############################################################################
-        Post.objects.filter(user=user)
+            logs_num_list13 = []
+            for i in range(13):
+                logs_num_list13.append(sum(logs_num_list52[4 * i : 4 * (i + 1)]))
         ###############################################################################
         if request.method == "POST":
             form = MypageForm(request.POST, instance=user)

@@ -58,7 +58,7 @@
                         </div>
                         <a href="{% url 'storemap:storemap_view' %}" class="nav-item nav-link">StoreMap</a>
                         <a href="{% url 'qnaboard:list' %}" class="nav-item nav-link">QnA</a>
-                        <a href="/" class="nav-item nav-link">Notice</a>
+                        <a href="{% url 'noticeboard:list' %}" class="nav-item nav-link">Notice</a>
                         {% if user.is_authenticated %}
                             <a href="{% url 'users:logout_view' %}" class="nav_button">Logout</a>
                             <a href="{% url 'users:mypage_view' %}" class="nav_button">Mypage</a>
