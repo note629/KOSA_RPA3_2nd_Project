@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from users.models import User, RecycleLog
+from datetime import datetime, timedelta
+from dateutil.relativedelta import relativedelta
 
 # Create your views here.
 
@@ -55,3 +57,59 @@ def user_rank(request):
         }
 
     return render(request, "activity/ranktest.html", context)
+
+
+def recycle_log_status(request):
+    # 전체 기간 동안 logs
+    logs_num_list52 = []
+    for i in range(52):
+        logs_num_list52.append(
+            len(list(RecycleLog.objects.filter(classify_item=str(i))))
+        )
+    total_logs_num = RecycleLog.objects.count()
+    null_logs_num = total_logs_num - sum(logs_num_list52)
+    print(total_logs_num, logs_num_list52, null_logs_num)
+
+    logs_num_list13 = []
+    for i in range(13):
+        logs_num_list13.append(sum(logs_num_list52[4 * i : 4 * (i + 1)]))
+
+    # 최근 한 달 동안 logs
+    # 한 달 이전에 대한 계산을 위해 dateutil 라이브러리 필요
+    # pip install python-dateutil
+    now_date = datetime.now()
+    end_date = datetime(now_date.year, now_date.month, now_date.day + 1)
+    start_date = end_date - relativedelta(months=1)
+    month_logs_num_list52 = []
+    for i in range(52):
+        month_logs_num_list52.append(
+            len(
+                list(
+                    RecycleLog.objects.filter(
+                        classify_item=str(i), use_date__range=[start_date, end_date]
+                    )
+                )
+            )
+        )
+    month_total_logs_num = RecycleLog.objects.filter(
+        use_date__range=[start_date, end_date]
+    ).count()
+    month_null_logs_num = month_total_logs_num - sum(month_logs_num_list52)
+    print(month_total_logs_num, month_logs_num_list52, month_null_logs_num)
+
+    month_logs_num_list13 = []
+    for i in range(13):
+        month_logs_num_list13.append(sum(month_logs_num_list52[4 * i : 4 * (i + 1)]))
+
+    context = {
+        "logs_num": [total_logs_num - null_logs_num, total_logs_num, null_logs_num],
+        "logs_num_list": logs_num_list13,
+        "month_logs_num": [
+            month_total_logs_num - month_null_logs_num,
+            month_total_logs_num,
+            month_null_logs_num,
+        ],
+        "month_logs_num_list": month_logs_num_list13,
+    }
+
+    return render(request, "activity/statustest.html", context)
