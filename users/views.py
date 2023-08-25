@@ -1,5 +1,6 @@
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm, SetPasswordForm
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from pyexpat.errors import messages
 
@@ -36,7 +37,7 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect("/")
+    return HttpResponseRedirect(request.GET.get("next") or "/")
 
 
 def signup(request):

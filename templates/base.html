@@ -67,6 +67,61 @@
                             <a href="{% url 'users:signup' %}" class="nav_button">SignUp</a>
                         {% endif %}
                     </div>
+                    <div class="collapse navbar-collapse" id="ftco-nav">
+
+                        <ul class="navbar-nav ml-auto">
+
+                            <li class="nav-item active">
+                                <a href="/" class="nav-link">HOME</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="{% url 'classify:image_upload' %}" class="nav-link">RECYCLE</a>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle"
+                                   href="#"
+                                   id="dropdown04"
+                                   data-toggle="dropdown"
+                                   aria-haspopup="true"
+                                   aria-expanded="false">ACTIVITY</a>
+                                <div class="dropdown-menu" aria-labelledby="dropdown04">
+                                    <a class="dropdown-item" href="{% url 'activity:user_rank' %}">USER RANK</a>
+                                    <a class="dropdown-item" href="/">폐쇄</a>
+
+                                    <!--                                    로그인 버튼추가예졍-->
+                                </div>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="{% url 'storemap:storemap_view' %}" class="nav-link">STORE MAP</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="{% url 'qnaboard:list' %}" class="nav-link">QnA</a>
+                            </li>
+
+                            {% if user.is_authenticated %}
+                                <li class="nav-item-user">
+                                    <a href="{% url 'users:logout_view' %}?next={{ request.path }}"
+                                       class="nav-link">Logout</a>
+                                </li>
+                                <li class="nav-item-user">
+                                    <a href="{% url 'users:mypage_view' %}" class="nav-link">MyPage</a>
+                                </li>
+                            {% else %}
+                                <li class="nav-item-user">
+                                    <a href="{% url 'users:login_view' %}" class="nav-link">Login</a>
+                                </li>
+                                <li class="nav-item-user">
+                                    <a href="{% url 'users:signup' %}" class="nav-link">Sign up</a>
+                                </li>
+                            {% endif %}
+ 
+                        </ul>
+ 
+                    </div>
                 </div>
             </nav>
             <hr style="border: solid 2px #c9e5bf; margin: 0.5rem 0;">

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block html_body %}
+    <h1>activity status 테스트용 html입니다.</h1>
+    <h3>나중에 삭제해주세요.</h3>
+    <h4>전체 기간 분리수거 현황 : {{ logs_num.0 }}</h4>
+    <h4>전체 기간 처리 현황 : {{ logs_num.1 }}</h4>
+    <h4>전체 기간 처리 못한 현황 : {{ logs_num.2 }}</h4>
+
+    <h5>각 항목별 전체기간 분리수거 현황</h5>
+    <h6>철캔 : {{ logs_num_list.0 }}</h6>
+    <h6>알루미늄캔 : {{ logs_num_list.1 }}</h6>
+    <h6>종이 : {{ logs_num_list.2 }}</h6>
+    <h6>페트병(무색) : {{ logs_num_list.3 }}</h6>
+    <h6>페트병(유색) : {{ logs_num_list.4 }}</h6>
+    <h6>플라스틱(PE) : {{ logs_num_list.5 }}</h6>
+    <h6>플라스틱(PP) : {{ logs_num_list.6 }}</h6>
+    <h6>플라스틱(PS) : {{ logs_num_list.7 }}</h6>
+    <h6>스티로폼 : {{ logs_num_list.8 }}</h6>
+    <h6>비닐 : {{ logs_num_list.9 }}</h6>
+    <h6>유리병(갈색) : {{ logs_num_list.10 }}</h6>
+    <h6>유리병(녹색) : {{ logs_num_list.11 }}</h6>
+    <h6>유리병(투명) : {{ logs_num_list.12 }}</h6>
+
+    <h4>최근 한 달간 분리수거 현황 : {{ month_logs_num.0 }}</h4>
+    <h4>최근 한 달간 기간 처리 현황 : {{ month_logs_num.1 }}</h4>
+    <h4>최근 한 달간 기간 처리 못한 현황 : {{ month_logs_num.2 }}</h4>
+
+    <h5>각 항목별 최근 한 달간 분리수거 현황</h5>
+    <h6>철캔 : {{ month_logs_num_list.0 }}</h6>
+    <h6>알루미늄캔 : {{ month_logs_num_list.1 }}</h6>
+    <h6>종이 : {{ month_logs_num_list.2 }}</h6>
+    <h6>페트병(무색) : {{ month_logs_num_list.3 }}</h6>
+    <h6>페트병(유색) : {{ month_logs_num_list.4 }}</h6>
+    <h6>플라스틱(PE) : {{ month_logs_num_list.5 }}</h6>
+    <h6>플라스틱(PP) : {{ month_logs_num_list.6 }}</h6>
+    <h6>플라스틱(PS) : {{ month_logs_num_list.7 }}</h6>
+    <h6>스티로폼 : {{ month_logs_num_list.8 }}</h6>
+    <h6>비닐 : {{ month_logs_num_list.9 }}</h6>
+    <h6>유리병(갈색) : {{ month_logs_num_list.10 }}</h6>
+    <h6>유리병(녹색) : {{ month_logs_num_list.11 }}</h6>
+    <h6>유리병(투명) : {{ month_logs_num_list.12 }}</h6>
+{% endblock %}

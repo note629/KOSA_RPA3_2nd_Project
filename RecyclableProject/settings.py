@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     "activity.apps.ActivityConfig",
     "storemap.apps.StoremapConfig",
     "corsheaders",
+    "noticeboard.apps.NoticeboardConfig",
 ]
 
 SITE_ID = 1

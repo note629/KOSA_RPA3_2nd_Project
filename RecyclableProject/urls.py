@@ -27,6 +27,8 @@ urlpatterns = [
     path("classify/", include("classify.urls")),
     path("activity/", include("activity.urls")),
     path("storemap/", include("storemap.urls")),
+    path("noticeboard/", include("noticeboard.urls")),
 ]
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
