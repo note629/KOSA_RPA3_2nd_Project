@@ -76,6 +76,20 @@
 .errorlist {
   color: red;
 }
+
+.mypage-user_name {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.mypage-sub {
+  height: 400px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .mypage-main {
   display: flex;
   flex-direction: row;
@@ -309,7 +323,7 @@
     0 5px 5px 1px rgba(0, 0, 0, 0.4);
 }
 .nav_button:active {
-  margin-top: -18px;
+  margin-top: -0.01px;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;

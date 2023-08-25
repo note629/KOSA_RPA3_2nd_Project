@@ -1,0 +1,122 @@
+.btn {
+  margin: 1rem;
+}
+.btn-ghost {
+  --btn-color: var(--btn-bg);
+  --btn-border: 1px solid var(--btn-bg);
+  background: 0 0;
+  transition: 0.3s;
+}
+.btn-primary {
+  --bs-btn-hover-bg: #ffffff;
+  --bs-btn-hover-border-color: #ffffff;
+  --bs-btn-hover-color: rgba(166, 202, 153, 0.76);
+  --btn-color: white;
+  --btn-bg: var(--primary-color);
+  --btn-border: 1px solid var(--btn-bg);
+}
+.btn-primary.disabled {
+  --btn-bg: var(--primary-color-lighter);
+}
+.btn {
+  --btn-padding: 0.75rem 1.25rem;
+  --btn-border: 1px solid var(--secondary-color);
+  --btn-radius: 4px;
+  position: relative;
+  padding: var(--btn-padding);
+  color: var(--btn-color, #000);
+  background: var(--btn-bg, #fff);
+  border: var(--btn-border);
+  border-radius: var(--btn-radius);
+  white-space: nowrap;
+  cursor: pointer;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+/*user agent stylesheet button {*/
+/*  appearance: auto;*/
+/*  font-style:;*/
+/*  font-variant-ligatures:;*/
+/*  font-variant-caps:;*/
+/*  font-variant-numeric:;*/
+/*  font-variant-east-asian:;*/
+/*  font-variant-alternates:;*/
+/*  font-weight:;*/
+/*  font-stretch:;*/
+/*  font-size:;*/
+/*  font-family:;*/
+/*  font-optical-sizing:;*/
+/*  font-kerning:;*/
+/*  font-feature-settings:;*/
+/*  font-variation-settings:;*/
+/*  text-rendering: auto;*/
+/*  color: buttontext;*/
+/*  letter-spacing: normal;*/
+/*  word-spacing: normal;*/
+/*  line-height: normal;*/
+/*  text-transform: none;*/
+/*  text-indent: 0px;*/
+/*  text-shadow: none;*/
+/*  display: inline-block;*/
+/*  text-align: center;*/
+/*  align-items: flex-start;*/
+/*  cursor: default;*/
+/*  box-sizing: border-box;*/
+/*  background-color: buttonface;*/
+/*  writing-mode: horizontal-tb !important;*/
+/*  margin: 0em;*/
+/*  padding-block: 1px;*/
+/*  padding-inline: 6px;*/
+/*  border-width: 2px;*/
+/*  border-style: outset;*/
+/*  !*border-color: buttonborder;*!*/
+/*  border-image: initial;*/
+/*}*/
+:root {
+  --primary-color: hsl(104, 32%, 70%);
+  --secondary-color: hsl(217, 15%, 83%);
+  --success-color: hsl(165, 58%, 55%);
+  --info-color: hsl(214, 79%, 65%);
+  --warning-color: hsl(43, 100%, 66%);
+  --danger-color: hsl(354, 81%, 63%);
+  --primary-color-darker: hsl(196, 68%, 54%);
+  --secondary-color-darker: hsl(215, 13%, 70%);
+  --success-color-darker: hsl(165, 55%, 48%);
+  --info-color-darker: hsl(214, 68%, 58%);
+  --warning-color-darker: hsl(39, 97%, 62%);
+  --danger-color-darker: hsl(354, 67%, 56%);
+  --primary-color-lighter: hsla(104, 32%, 70%, 0.76);
+  --secondary-color-lighter: hsl(214, 16%, 92%);
+  --success-color-lighter: hsl(165, 58%, 75%);
+  --info-color-lighter: hsl(214, 79%, 85%);
+  --warning-color-lighter: hsl(43, 100%, 86%);
+  --danger-color-lighter: hsl(354, 81%, 83%);
+  --secondary-color-darkest: hsl(215, 11%, 30%);
+  --secondary-color-lightest: hsl(220, 1%, 98%);
+  --ease-in-quad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  --ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  --ease-in-quart: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+  --ease-in-quint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+  --ease-in-expo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  --ease-in-circ: cubic-bezier(0.6, 0.04, 0.98, 0.335);
+  --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+  --ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-out-circ: cubic-bezier(0.075, 0.82, 0.165, 1);
+  --ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  --ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+  --ease-in-out-quart: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
+  --ease-in-out-expo: cubic-bezier(1, 0, 0, 1);
+  --ease-in-out-circ: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}

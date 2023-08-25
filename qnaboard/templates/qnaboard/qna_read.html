@@ -38,7 +38,7 @@
                 </form>
             </div>
         {% endif %}
-      
+ 
         <!-- 댓글 목록 -->
         <div class="comment-list-container">
             {% for comment in comments %}
@@ -47,6 +47,16 @@
                         <p class="comment-user">{{ comment.user }}</p>
                         <p class="comment-content">{{ comment.qc_content }}</p>
                         <p class="comment-date">{{ comment.qc_date }}</p>
+                        {% if comment.user == request.user %}
+                            <form action="{% url "qnaboard:update_comment" post.id comment.id %}" method="post">
+                                {% csrf_token %}
+                                {#                    {{ update_comment_form.as_p }}#}
+                                <input type="text" id="comment_content" name="comment_content" />
+                                <label for="comment_content"></label>
+                                <button type="submit">수정</button>
+                            </form>
+                            <a href="{% url "qnaboard:delete_comment" post.id comment.id %}">삭제</a>
+                        {% endif %}
                     </div>
                 </div>
             {% endfor %}
