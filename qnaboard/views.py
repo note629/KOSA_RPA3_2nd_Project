@@ -1,5 +1,5 @@
 from django.core.exceptions import PermissionDenied
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponse
 
 from django.shortcuts import render, redirect, get_object_or_404
@@ -11,24 +11,17 @@ from qnaboard.models import Post, Comment
 # QnA 게시글 목록 조회
 def qb_list(request):
     posts = Post.objects.all().order_by("-qb_date")
-    context_posts = {"posts": posts}
 
     # 페이징 처리
-    # paginator = Paginator(posts, 4)
-    # page_num = int(request.GET.get("page", 1))
-    # page = paginator.get_page(page_num)
+    paginator = Paginator(posts, 7)
+    page = request.GET.get("page", 1)
+    page_obj = paginator.get_page(page)
 
-    # context_page = {"page": page}
+    context = {"posts": page_obj}
 
-    return render(request, "qnaboard/qna_list.html", context_posts)
+    return render(request, "qnaboard/qna_list.html", context)
 
 
-# QnA 게시글 상세 조회
-# def qb_read(request, post_id):
-#     post = Post.objects.get(id=post_id)
-#     context = {"post": post}
-#     return render(request, "qnaboard/qna_read.html", context)
-##############
 def qb_read(request, post_id):
     try:
         post = Post.objects.get(id=post_id)
@@ -106,10 +99,6 @@ def qb_delete(request, post_id):
 
     post.delete()
     return redirect("qnaboard:list")
-
-
-#     except Post.DoesNotExist:
-#         return HttpResponse("해당 게시물을 찾을 수 없습니다.")
 
 
 def qbc_update(request, post_id, comment_id):

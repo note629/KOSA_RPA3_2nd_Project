@@ -1,4 +1,5 @@
 from django.core.exceptions import PermissionDenied
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from requests import post
 
@@ -9,7 +10,14 @@ from .models import Notice
 # notice 게시글 목록 조회
 def nb_list(request):
     notices = Notice.objects.all().order_by("-nb_date")
-    context = {"notices": notices}
+
+    # 페이징 처리
+    paginator = Paginator(notices, 7)
+    page = request.GET.get("page", 1)
+    page_obj = paginator.get_page(page)
+
+    context = {"notices": page_obj}
+
     return render(request, "noticeboard/notice_list.html", context)
 
 
