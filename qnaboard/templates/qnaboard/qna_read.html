@@ -1,52 +1,55 @@
 {% extends "base.html" %}
-{% block html_header %}{% endblock %}
+{% load static %}
+
+{% block html_header %}
+    <link rel="stylesheet" href="{% static '/css/qnaboard.css' %}">
+{% endblock %}
+
 {% block html_body %}
     <body>
-        {% if post %}
-            <h1>{{ post.qb_title }}</h1>
-            <p>작성자: {{ post.user }}</p>
-            <p>작성일: {{ post.qb_date }}</p>
-            <p>{{ post.qb_content }}</p>
-            {% if post.qb_image %}<img src="{{ post.qb_image.url }}" width="300px">{% endif %}
-            <br>
+        <div class="post-container">
+            {% if post %}
+                <h1 class="post-title">{{ post.qb_title }}</h1>
+                <p class="post-meta">작성자: {{ post.user }}</p>
+                <p class="post-meta">작성일: {{ post.qb_date }}</p>
+                <div class="post-content">{{ post.qb_content }}</div>
+                {% if post.qb_image %}<img src="{{ post.qb_image.url }}" alt="게시글 이미지" class="post-image">{% endif %}
 
-
-            <a href="/qnaboard/list">목록</a>
-            {% if post.user == request.user %}
-                <a href="/qnaboard/update/{{ post.id }}">수정</a>
-                <a href="/qnaboard/delete/{{ post.id }}">삭제</a>
+                <div class="post-actions">
+                    <button type="button" onclick="location.href='/qnaboard/list'" class="button">목록</button>
+                    {% if post.user == request.user %}
+                        <a href="/qnaboard/update/{{ post.id }}" class="button secondary">수정</a>
+                        <a href="/qnaboard/delete/{{ post.id }}" class="button delete">삭제</a>
+                    {% endif %}
+                </div>
+            {% else %}
+                <p class="error-message">해당 게시글을 찾을 수 없습니다.</p>
             {% endif %}
-        {% else %}
-            <p>해당 게시글을 찾을 수 없습니다.</p>
-        {% endif %}
-        <br>
-        <!-- 댓글 -->
+        </div>
+
+        <!-- 댓글 작성 폼 -->
         {% if request.user.is_authenticated %}
-            <br>
-            <h2>댓글 작성</h2>
-            <form method="post">
-                {% csrf_token %}
-                {{ comment_form.as_p }}
-                <button type="submit">댓글 작성</button>
-            </form>
-        {% endif %}
-
-        <h2>댓글 목록</h2>
-        {% for comment in comments %}
-            <p>{{ comment.user }}</p>
-            <p>{{ comment.qc_content }}</p>
-            <p>{{ comment.qc_date }}</p>
-            {% if comment.user == request.user %}
-                <form action="{% url "qnaboard:update_comment" post.id comment.id %}"
-                      method="post">
+            <div class="comment-form-container">
+                {#                <h2 class="comment-heading">댓글 작성</h2>#}
+                <form method="post" class="comment-form">
                     {% csrf_token %}
-                    {#                    {{ update_comment_form.as_p }}#}
-                    <input type="text" id="comment_content" name="comment_content" />
-                    <label for="comment_content"></label>
-                    <button type="submit">수정</button>
+                    {{ comment_form.as_p }}
+                    <button type="submit" class="comment-submit-button">작성</button>
                 </form>
-                <a href="{% url "qnaboard:delete_comment" post.id comment.id %}">삭제</a>
-            {% endif %}
-        {% endfor %}
+            </div>
+        {% endif %}
+      
+        <!-- 댓글 목록 -->
+        <div class="comment-list-container">
+            {% for comment in comments %}
+                <div class="comment">
+                    <div class="comment-details">
+                        <p class="comment-user">{{ comment.user }}</p>
+                        <p class="comment-content">{{ comment.qc_content }}</p>
+                        <p class="comment-date">{{ comment.qc_date }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </body>
 {% endblock %}

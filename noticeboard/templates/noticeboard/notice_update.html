@@ -9,6 +9,9 @@
                 {% csrf_token %}
                 {{ updateForm.as_p }}
                 <button type="submit">수정 완료</button>
+                <button type="button"
+                        onclick="location.href='/noticeboard/list/'"
+                        class="button">돌아가기</button>
             </form>
         </div>
     </body>
