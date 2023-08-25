@@ -4,8 +4,9 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from pyexpat.errors import messages
 
+from qnaboard.models import Post
 from users.forms import LoginForm, SignupForm, MypageForm, CustomPasswordChangeForm
-from users.models import User
+from users.models import User, RecycleLog
 
 
 # login_view 구현
@@ -61,10 +62,25 @@ def mypage_view(request):
         return redirect("/")
 
     if request.user.is_authenticated:
+        ###############################################################################
         user = request.user
         user_name = User.objects.get(id=request.user.id)
-        RecycleLog.o
+        ###############################################################################
+        logs_num_list52 = []
+        for i in range(52):
+            logs_num_list52.append(
+                len(list(RecycleLog.objects.filter(user=user, classify_item=str(i))))
+            )
+        total_logs_num = RecycleLog.objects.count()
+        null_logs_num = total_logs_num - sum(logs_num_list52)
+        print(total_logs_num, logs_num_list52, null_logs_num)
 
+        logs_num_list13 = []
+        for i in range(13):
+            logs_num_list13.append(sum(logs_num_list52[4 * i : 4 * (i + 1)]))
+        ###############################################################################
+        Post.objects.filter(user=user)
+        ###############################################################################
         if request.method == "POST":
             form = MypageForm(request.POST, instance=user)
             if form.is_valid():
@@ -72,7 +88,13 @@ def mypage_view(request):
                 return redirect("users:mypage_view")
         else:
             form = MypageForm(instance=user)
-        context = {"form": form, "user": user, "user_name": user_name.username}
+        context = {
+            "form": form,
+            "user": user,
+            "user_name": user_name.username,
+            "logs_num_list13": logs_num_list13,
+            "total_logs_num": total_logs_num,
+        }
         return render(request, "users/mypage.html", context)
 
 
