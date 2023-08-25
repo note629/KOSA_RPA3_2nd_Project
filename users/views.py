@@ -61,7 +61,8 @@ def mypage_view(request):
 
     if request.user.is_authenticated:
         user = request.user
-        user_origin = user
+        user_name = User.objects.get(id=request.user.id)
+        RecycleLog.o
 
         if request.method == "POST":
             form = MypageForm(request.POST, instance=user)
@@ -70,7 +71,7 @@ def mypage_view(request):
                 return redirect("users:mypage_view")
         else:
             form = MypageForm(instance=user)
-        context = {"form": form, "user": user_origin}
+        context = {"form": form, "user": user, "user_name": user_name.username}
         return render(request, "users/mypage.html", context)
 
 

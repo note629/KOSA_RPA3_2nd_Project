@@ -1,45 +1,107 @@
 {% extends "base.html" %}
-{% block html_header %}{% endblock %}
+{% block html_header %}<link href="/static/css/recycle_chart_css.css" rel="stylesheet">{% endblock %}
 {% block html_body %}
-<section>
-    <h1>{{ user }} 님</h1>
-    <div class="mypage-main">
-        <div class="mypage-section-a">
-            <form method="POST">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">회원정보 수정</button>
-                <button type="button" onclick="location.href='{% url "users:change_password_view" %}'">비밀번호 변경</button>
-            </form>
+    <section>
+        <h1 class="mypage-user_name">{{ user_name }} 님</h1>
+        <div class="mypage-main">
+            <div class="mypage-section-a">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">회원정보 수정</button>
+                    <button type="button" onclick="location.href='{% url "users:change_password_view" %}'">비밀번호 변경</button>
+                </form>
+            </div>
+            <div class="mypage-section-b">
+                <div class="mypage-section-obj">
+                    <img src="/static/image/post_icon.png"
+                         alt="post_icon"
+                         class="mypage-status-ico" />
+                    <p>게시물 작성</p>
+                    &nbsp;
+                    <p>10</p>
+                    &nbsp;
+                    <p>개</p>
+                </div>
+                <div class="mypage-section-obj">
+                    <img src="/static/image/comment_icon.png"
+                         alt="post_icon"
+                         class="mypage-status-ico" />
+                    <p>댓글 작성</p>
+                    &nbsp;
+                    <p>10</p>
+                    &nbsp;
+                    <p>개</p>
+                </div>
+                <div class="mypage-section-obj">
+                    <img src="/static/image/recycle_count_icon.png"
+                         alt="post_icon"
+                         class="mypage-status-ico" />
+                    <p>분리배출</p>
+                    &nbsp;
+                    <p>10</p>
+                    &nbsp;
+                    <p>번</p>
+                </div>
+            </div>
         </div>
-        <div class="mypage-section-b">
-            <div class="mypage-section-obj">
-                <img src="/static/image/post_icon.png" alt="post_icon" class="mypage-status-ico" />
-                <p>게시물 작성</p>
-                &nbsp;
-                <p>10</p>
-                &nbsp;
-                <p>개</p>
-            </div>
-            <div class="mypage-section-obj">
-                <img src="/static/image/comment_icon.png" alt="post_icon" class="mypage-status-ico" />
-                <p>댓글 작성</p>
-                &nbsp;
-                <p>10</p>
-                &nbsp;
-                <p>개</p>
-            </div>
-            <div class="mypage-section-obj">
-                <img src="/static/image/recycle_count_icon.png" alt="post_icon" class="mypage-status-ico" />
-                <p>분리배출</p>
-                &nbsp;
-                <p>10</p>
-                &nbsp;
-                <p>번</p>
-            </div>
-
+        <div class="mypage-sub">
+            <div class="pieID pie"></div>
+            <ul class="pieID legend">
+                <li>
+                    <em>철캔</em>
+                    <span>{{}}</span>
+                </li>
+                <li>
+                    <em>알루미늄캔</em>
+                    <span>531</span>
+                </li>
+                <li>
+                    <em>종이</em>
+                    <span>868</span>
+                </li>
+                <li>
+                    <em>페트병(무색)</em>
+                    <span>344</span>
+                </li>
+                <li>
+                    <em>페트병(유색)</em>
+                    <span>1145</span>
+                </li>
+                <li>
+                    <em>플라스틱(PE)</em>
+                    <span>1145</span>
+                </li>
+                <li>
+                    <em>플라스틱(PP)</em>
+                    <span>1145</span>
+                </li>
+                <li>
+                    <em>플라스틱(PS)</em>
+                    <span>1145</span>
+                </li>
+                <li>
+                    <em>스티로폼</em>
+                    <span>1145</span>
+                </li>
+                <li>
+                    <em>비닐</em>
+                    <span>1145</span>
+                </li>
+                <li>
+                    <em>유리병(갈색)</em>
+                    <span>1145</span>
+                </li>
+                <li>
+                    <em>유리병(녹색)</em>
+                    <span>1145</span>
+                </li>
+                <li>
+                    <em>유리병(투명)</em>
+                    <span>1145</span>
+                </li>
+            </ul>
         </div>
-    </div>
-</section>
-
+    </section>
+    <script src="/static/js/recycle_chart_js.js"></script>
 {% endblock %}
