@@ -2,10 +2,12 @@ import math
 import os
 import shutil
 
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from ultralytics import YOLO
 from urllib.parse import quote, unquote
 
+from activity.models import GalleryLog, GalleryLikes
 from classify.forms import ClassifyForm
 from users.models import RecycleLog
 
@@ -25,14 +27,14 @@ classify_list = [
     "종이_훼손 안 됨_이물질 있음",
     "종이_훼손됨_이물질 없음",
     "종이_훼손됨_이물질 있음",
-    "패트병(무색)_훼손 안 됨_이물질 없음",
-    "패트병(무색)_훼손 안 됨_이물질 있음",
-    "패트병(무색)_훼손됨_이물질 없음",
-    "패트병(무색)_훼손됨_이물질 있음",
-    "패트병(유색)_훼손 안 됨_이물질 없음",
-    "패트병(유색)_훼손 안 됨_이물질 있음",
-    "패트병(유색)_훼손됨_이물질 없음",
-    "패트병(유색)_훼손됨_이물질 있음",
+    "페트병(무색)_훼손 안 됨_이물질 없음",
+    "페트병(무색)_훼손 안 됨_이물질 있음",
+    "페트병(무색)_훼손됨_이물질 없음",
+    "페트병(무색)_훼손됨_이물질 있음",
+    "페트병(유색)_훼손 안 됨_이물질 없음",
+    "페트병(유색)_훼손 안 됨_이물질 있음",
+    "페트병(유색)_훼손됨_이물질 없음",
+    "페트병(유색)_훼손됨_이물질 있음",
     "플라스틱(PE)_훼손 안 됨_이물질 없음",
     "플라스틱(PE)_훼손 안 됨_이물질 있음",
     "플라스틱(PE)_훼손됨_이물질 없음",
@@ -266,3 +268,44 @@ def classify_yolo(request):
             }
 
     return render(request, "classify/classify_result.html", context)
+
+
+def upload_to_gallery(request):
+    if request.user.is_authenticated:
+        latest_recycle_log = (
+            RecycleLog.objects.filter(user_id=request.user.id)
+            .order_by("-use_date")
+            .first()
+        )
+        user_id = request.user.id
+        recyclelog_id = latest_recycle_log.id
+
+        # 이미 GalleryLog가 있는지 확인합니다.
+        existing_gallery_log = GalleryLog.objects.filter(
+            recyclelog_id=recyclelog_id
+        ).first()
+
+        if existing_gallery_log is None:
+            # 없다면 새로 생성합니다.
+            GalleryLog.objects.create(user_id=user_id, recyclelog_id=recyclelog_id)
+
+            latest_gallery_log = (
+                GalleryLog.objects.filter(user=request.user).order_by("-id").first()
+            )
+
+            gallerylog_id = latest_gallery_log.id
+
+            # 이미 GalleryLikes가 있는지 확인합니다.
+            existing_likes = GalleryLikes.objects.filter(
+                gallerylog_id=gallerylog_id
+            ).first()
+
+            # if existing_likes is None:
+            #     # 없다면 새로 생성합니다.
+            #     GalleryLikes.objects.create(
+            #         user_id=user_id, gallerylog_id=gallerylog_id
+            #     )
+
+        return redirect("activity:gallery_view")  # activity 앱의 gallery라는 이름의 URL로 리다이렉트
+    else:
+        return HttpResponse("Upload failed")

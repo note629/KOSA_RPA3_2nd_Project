@@ -15,6 +15,9 @@
                         <p>제품 상태: {{ result_obj_split_damg }}, {{ result_obj_split_dirt }}</p>
                         <p>정확도: {{ results_acc }}%</p>
                         <p>재활용 가능 여부: {{ results_classify }}</p>
+                        <button class="btn btn-primary btn-ghost"
+                                type="button"
+                                onclick="location.href='{% url "classify:upload_to_gallery" %}'">Gallery 등록</button>
                     </div>
                 </div>
                 <div class="result-tip">

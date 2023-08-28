@@ -1,10 +1,6 @@
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
-from django.contrib.auth.forms import PasswordChangeForm, SetPasswordForm
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect, get_object_or_404
-from pyexpat.errors import messages
-
-from qnaboard.models import Post
+from django.shortcuts import render, redirect
 from users.forms import LoginForm, SignupForm, MypageForm, CustomPasswordChangeForm
 from users.models import User, RecycleLog
 
