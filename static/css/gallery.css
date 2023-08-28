@@ -1,11 +1,13 @@
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  font-family: sans-serif;
-}
+/*body {*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  align-items: center;*/
+/*  flex-direction: column;*/
+/*  font-family: sans-serif;*/
+/*}*/
 .gallery_title_text {
+  position: relative;
+  left: 40%;
   color: #55654d;
   font-weight: bold;
   margin-bottom: 2%;
