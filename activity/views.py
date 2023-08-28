@@ -63,7 +63,8 @@ def user_rank(request):
             "all_user_rank_list": all_user_rank_list,
         }
 
-    return render(request, "activity/ranktest.html", context)
+    # return render(request, "activity/ranktest.html", context)
+    return render(request, "activity/rank.html", context)
 
 
 def recycle_log_status(request):
@@ -119,7 +120,8 @@ def recycle_log_status(request):
         "month_logs_num_list": month_logs_num_list13,
     }
 
-    return render(request, "activity/statustest.html", context)
+    return render(request, "activity/status.html", context)
+
 
 
 def gallery_view(request):
