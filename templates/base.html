@@ -53,7 +53,7 @@
                                data-bs-toggle="dropdown">Activity</a>
                             <div class="dropdown-menu rounded-0 rounded-bottom m-0">
                                 <a href="{% url 'activity:user_rank' %}" class="dropdown-item">사용자 분리수거 순위</a>
-                                <a href="/" class="dropdown-item">월간 분리수거 통계</a>
+                                <a href="{% url 'activity:recycle_status' %}" class="dropdown-item">월간 분리수거 통계</a>
                             </div>
                         </div>
                         <a href="{% url 'storemap:storemap_view' %}" class="nav-item nav-link">StoreMap</a>
