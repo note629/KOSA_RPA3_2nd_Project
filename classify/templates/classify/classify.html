@@ -1,15 +1,25 @@
 {% extends "base.html" %}
-{% block html_header %}{% endblock %}
+{% block html_header %}
+    <link href="/static/css/classify.css" rel="stylesheet">
+    <link href="/static/css/button.css" rel="stylesheet">
+{% endblock %}
 {% block html_body %}
-    <section>
-        <div>
-            <form method="post" enctype="multipart/form-data">
+    <section class="classify-section">
+        <div class="square">
+            <form method="post" enctype="multipart/form-data" class="classify-form">
                 {% csrf_token %}
-                {{ form.as_p }}
+                <!-- Drag & Drop Zone -->
+                <div id="dropzone">Drag & Drop</div>
+                <div class="manual-form">
+                    {{ form.as_p }}
+                    <button class="btn btn-primary btn-ghost" type="submit">업로드</button>
+                </div>
 
-                <button type="submit">Upload</button>
+
             </form>
         </form>
     </div>
 </section>
+<!-- Add this script to handle the Drag & Drop -->
+<script src="/static/js/classify.js"></script>
 {% endblock %}

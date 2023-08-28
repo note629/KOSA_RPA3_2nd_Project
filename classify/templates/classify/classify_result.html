@@ -1,18 +1,37 @@
 {% extends "base.html" %}
-{% block html_header %}{% endblock %}
+{% block html_header %}
+    <link href="/static/css/classify.css" rel="stylesheet">
+    <link href="/static/css/button.css" rel="stylesheet">
+{% endblock %}
 {% block html_body %}
-    <section>
-        <div>
-            <h2>가장 최근 업로드된 이미지 URL</h2>
+    <section class="classify-result-section">
+        <div class="square-result">
+            <h2 class="result-page-title">제품 분류 결과</h2>
             {% if result_obj_split_name %}
-                <img src="{{ img_url }}" width="300px">
-                <p>제품 분류: {{ result_obj_split_name }}</p>
-                <p>제품 상태: {{ result_obj_split_dame }}, {{ result_obj_split_dirt }}</p>
-                <p>정확도: {{ results_acc }}%</p>
+                <div class="result-classify">
+                    <img class="result-img" src="{{ img_url }}">
+                    <div class="result-content">
+                        <p>제품 분류: {{ result_obj_split_name }}</p>
+                        <p>제품 상태: {{ result_obj_split_damg }}, {{ result_obj_split_dirt }}</p>
+                        <p>정확도: {{ results_acc }}%</p>
+                        <p>재활용 가능 여부: {{ results_classify }}</p>
+                    </div>
+                </div>
+                <div class="result-tip">
+                    <p class="result-tip-title">제품에 따른 분리 배출 요령</p>
+                    {% for tip_list in results_tip %}<p>• {{ tip_list }}</p>{% endfor %}
+                </div>
             {% else %}
-                <img src="{{ img_url }}" width="300px">
-                <p>대상을 분류하기 어렵습니다</p>
-                <p>정확도: {{ results_acc }}%</p>
+                <div class="result-classify">
+                    <img class="result-img" src="{{ img_url }}" width="300px">
+                    <div class="result-content">
+                        <p>대상을 분류하기 어렵습니다</p>
+                        <p>정확도: {{ results_acc }}%</p>
+                        <button class="btn btn-primary btn-ghost"
+                                type="button"
+                                onclick="location.href='{% url "classify:image_upload" %}'">돌아가기</button>
+                    </div>
+                </div>
             {% endif %}
         </div>
     </section>
