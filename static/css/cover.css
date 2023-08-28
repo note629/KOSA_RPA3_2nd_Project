@@ -78,9 +78,12 @@
 }
 
 .mypage-user_name {
+  margin-top: 20px;
+  margin-bottom: -20px;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  font-weight: bold;
 }
 
 .mypage-sub {

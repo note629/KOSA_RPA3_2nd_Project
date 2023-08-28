@@ -59,7 +59,7 @@ def signup(request):
 
 def mypage_view(request):
     if not request.user.is_authenticated:
-        return redirect("/")
+        return redirect("users:login_view")
 
     if request.user.is_authenticated:
         ###############################################################################
@@ -74,7 +74,9 @@ def mypage_view(request):
                         list(RecycleLog.objects.filter(user=user, classify_item=str(i)))
                     )
                 )
-            total_logs_num = RecycleLog.objects.filter(user=user).count()
+            total_logs_num = RecycleLog.objects.filter(
+                user=user, classify_item__isnull=False
+            ).count()
             null_logs_num = total_logs_num - sum(logs_num_list52)
             print(total_logs_num, logs_num_list52, null_logs_num)
 
@@ -101,7 +103,7 @@ def mypage_view(request):
 
 def change_password_view(request):
     if not request.user.is_authenticated:
-        return redirect("/")
+        return redirect("users:login_view")
 
     if request.user.is_authenticated:
         user = request.user
@@ -110,7 +112,7 @@ def change_password_view(request):
             form = CustomPasswordChangeForm(user, request.POST)
             if form.is_valid():
                 user_auth = form.save()
-                update_session_auth_hash(request, user_auth)  # Important!
+                update_session_auth_hash(request, user_auth)
                 return redirect("users:mypage_view")
         else:
             form = CustomPasswordChangeForm(user)
