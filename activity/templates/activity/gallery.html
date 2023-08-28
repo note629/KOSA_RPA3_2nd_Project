@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block html_header %}<link href="/static/css/gallery.css" rel="stylesheet">{% endblock %}
+{% block html_body %}
+    <h1 class="gallery_title_text">The Best of Wastes</h1>
+    <div class="grid-container">
+        {% for list in img_and_name_lists %}
+            <div>
+                <img class='grid-item' src="/media/classify_img/{{ list.0 }}"  alt=''>
+                <p>
+                    {{ list.1 }}
+                    <a href="#"
+                       class="btn btn-counter {% if list.3 %}active{% endif %}"
+                       data-count="{{ list.4 }}">
+                        <span class="gallerylog-id" style="display:none;">{{ list.2 }}</span> <!-- Add this line -->
+                        &#x2764;
+                    </a>
+                </p>
+            </div>
+        {% endfor %}
+    </div>
+    <script src="/static/js/gallery.js"></script>
+{% endblock %}

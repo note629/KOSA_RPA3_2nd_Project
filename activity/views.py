@@ -1,4 +1,11 @@
+import logging
+
+from django.http import JsonResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
+from django.views.decorators.csrf import csrf_exempt
+
+from activity.models import GalleryLog, GalleryLikes
 from users.models import User, RecycleLog
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
@@ -113,3 +120,56 @@ def recycle_log_status(request):
     }
 
     return render(request, "activity/statustest.html", context)
+
+
+def gallery_view(request):
+    Gallery_lists = GalleryLog.objects.all()
+
+    img_and_name_lists = []
+    for lists in Gallery_lists:
+        img_and_name = []
+        img_and_name.append((lists.recyclelog.input_img.url).split("/")[-1])
+        img_and_name.append((lists.recyclelog.user.username))
+        img_and_name.append((lists.id))
+        like_status = False
+        if request.user.is_authenticated:
+            like_status = GalleryLikes.objects.filter(
+                user=request.user, gallerylog=lists
+            ).exists()
+        like_count = GalleryLikes.objects.filter(gallerylog=lists).count()
+        img_and_name.append(like_status)
+        img_and_name.append(like_count)
+
+        img_and_name_lists.append(img_and_name)
+
+    post_id = request.POST.get("gallerylog_id")
+    print(post_id)
+    context = {"img_and_name_lists": img_and_name_lists}
+    return render(request, "activity/gallery.html", context)
+
+
+@csrf_exempt
+def like_toggle(request):
+    gallerylog_id = request.POST.get("gallerylog_id")
+
+    try:
+        gallerylog = GalleryLog.objects.get(id=gallerylog_id)
+    except GalleryLog.DoesNotExist:
+        return JsonResponse({"status": False, "error": "GalleryLog does not exist."})
+
+    like_status = False
+
+    like_qs = GalleryLikes.objects.filter(user=request.user, gallerylog=gallerylog)
+    print(like_qs)
+    if like_qs.exists():
+        # If a Like object exists for this user and post,
+        # delete it -> this means unlike the post.
+        like_qs.delete()
+        like_status = False
+    else:
+        # If no Like object exists for this user and post,
+        # create one -> this means liking the post.
+        GalleryLikes.objects.create(user=request.user, gallerylog=gallerylog)
+        like_status = True
+
+    return JsonResponse({"status": like_status})
