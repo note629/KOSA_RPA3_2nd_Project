@@ -5,6 +5,25 @@ body {
   background-color: #f7f7f7;
 }
 
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+}
+
+/* 마우스 커서 변경 */
+::-webkit-scrollbar-thumb:hover {
+  cursor:
+    url("/static/image/cursor_default.cur") 10 15,
+    not-allowed;
+}
+
 .map_section {
   width: 80%;
   height: 100%;
@@ -29,6 +48,9 @@ body {
 .map_wrap a:active {
   color: #000;
   text-decoration: none;
+  cursor:
+    url("/static/image/cursor_default.cur") 10 15,
+    not-allowed;
 }
 .map_wrap {
   position: relative;
@@ -67,6 +89,9 @@ body {
 }
 #menu_wrap .option button {
   margin-left: 5px;
+  cursor:
+    url("/static/image/cursor_default.cur") 10 15,
+    not-allowed;
 }
 #placesList li {
   list-style: none;
@@ -75,7 +100,6 @@ body {
   position: relative;
   border-bottom: 1px solid #888;
   overflow: hidden;
-  cursor: pointer;
   min-height: 65px;
 }
 #placesList .item span {
@@ -166,6 +190,8 @@ body {
 }
 #pagination .on {
   font-weight: bold;
-  cursor: default;
+  cursor:
+    url("/static/image/cursor_default.cur") 10 15,
+    not-allowed;
   color: #777;
 }

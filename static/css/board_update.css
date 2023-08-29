@@ -44,6 +44,9 @@
   background-color: #99ba8b;
   color: #fff;
   border-color: #005a00;
+  cursor:
+    url("/static/image/cursor_default.cur") 10 15,
+    not-allowed;
 }
 
 .button-container {
@@ -74,4 +77,7 @@
   background-color: #99ba8b;
   color: #fff;
   border-color: #005a00; /* 호버 효과 시 초록색 테두리로 변경 */
+  cursor:
+    url("/static/image/cursor_default.cur") 10 15,
+    not-allowed;
 }

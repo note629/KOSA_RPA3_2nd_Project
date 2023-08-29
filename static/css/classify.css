@@ -10,18 +10,21 @@ body {
   left: 50%;
   transform: translate(-50%, 40%);
 }
+
 .classify-form {
   position: absolute;
   top: 5%;
   left: 50%;
   transform: translate(-50%, 0%);
 }
+
 .classify-result-section {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, 20%);
 }
+
 .square-result {
   display: flex;
   flex-direction: column;
@@ -36,6 +39,7 @@ body {
   transform: translate(0%, -12.5%);
   background-color: rgb(239, 252, 235);
 }
+
 .result-page-title {
   margin-top: 30px;
   display: flex;
@@ -45,6 +49,7 @@ body {
   font-weight: bold;
   color: #55654d;
 }
+
 .result-classify {
   margin-top: 30px;
   width: 1500px;
@@ -56,11 +61,13 @@ body {
   transform: translate(-5%, 0%);
   font-weight: bold;
 }
+
 .result-img {
   max-width: 900px;
   max-height: 640px;
   object-fit: scale-down;
 }
+
 .result-content {
   display: flex;
   flex-direction: column;
@@ -71,11 +78,13 @@ body {
   transform: translate(-70%, 0%);
   color: #0a326a;
 }
+
 .result-tip-title {
   font-size: 30px;
   font-weight: bold;
   color: #55654d;
 }
+
 .result-tip {
   margin-top: 20px;
   width: 1500px;
@@ -99,6 +108,7 @@ body {
   color: #ccc;
   text-align: center;
 }
+
 .manual-form {
   display: flex;
   flex-direction: row;
@@ -108,9 +118,11 @@ body {
   line-height: 100%;
   text-align: center;
 }
+
 p {
   margin-top: 20px;
 }
+
 .square {
   width: 800px;
   height: 500px;
@@ -121,3 +133,17 @@ p {
   position: relative;
   background-color: rgb(239, 252, 235);
 }
+
+/*!* 파일 선택 버튼 스타일 *!*/
+/*.manual-form input[type="file"] {*/
+/*  !* 파일 선택 버튼 스타일 속성들을 여기에 추가 *!*/
+/*  background-color: #4caf50;*/
+/*  color: white;*/
+/*  padding: 10px 20px;*/
+/*  border-radius: 5px;*/
+/*}*/
+
+/*!* 파일 선택 버튼 hover 효과 *!*/
+/*.manual-form input[type="file"]:hover {*/
+/*  cursor: pointer; !* 원하는 마우스 커서로 변경 *!*/
+/*}*/
