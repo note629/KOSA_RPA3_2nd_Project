@@ -54,6 +54,10 @@ class SignupForm(forms.Form):
         )
         return user
 
+    class Meta:
+        model = get_user_model()
+        fields = ["username", "email", "password1", "password2"]
+
 
 class MypageForm(UserChangeForm):
     password = None
