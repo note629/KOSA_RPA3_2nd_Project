@@ -17,14 +17,14 @@ class PostForm(forms.ModelForm):
         widgets = {
             "qb_title": forms.TextInput(
                 attrs={
-                    "class": "form-control w-50",
+                    "class": "form-control",
                     "placeholder": "질문 사항이나 인증내용의 제목을 입력해 주세요",
                     "style": "margin-bottom : 10px;",
                 }
             ),
             "qb_content": forms.Textarea(
                 attrs={
-                    "class": "form-control w-75",
+                    "class": "form-control",
                     "placeholder": "자세한 질문 사항이나 인증 내용을 입력해주세요",
                 }
             ),
@@ -37,7 +37,7 @@ class PostForm(forms.ModelForm):
         self.fields["qb_image"].required = False  # 필수 필드가 아님을 나타냄
         self.fields["qb_image"].widget.attrs.update(
             {
-                "class": "form-control w-75",
+                "class": "form-control",
                 "placeholder": "첨부파일",
             }
         )
