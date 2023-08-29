@@ -48,6 +48,8 @@ body {
   cursor: pointer;
   transition: background-color 0.3s ease;
   float: right; /* 버튼을 오른쪽으로 이동 */
+  --bs-btn-active-bg: #278604;
+  --bs-btn-active-border-color: #278604;
 }
 
 .btn-write:hover {
@@ -67,6 +69,7 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   border: 1px solid #99ba8b;
+  margin-bottom: auto;
 }
 
 /* 테이블 스타일 */
@@ -130,19 +133,10 @@ body {
 /* 검색 #board-search*/
 #board-search .search-window {
   padding: 15px 0;
-  /*background-color: #e9efe8;*/
-  /*border-color: #278604;*/
-
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   border: 1px solid #99ba8b;
-  /*  */
-  /*padding: 15px;*/
-  /*border-radius: 8px;*/
-  /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);*/
-  /*background-color: #fff;*/
-  /*border: 1px solid #99ba8b;*/
 }
 #board-search .search-window .search-wrap {
   position: relative;
