@@ -91,7 +91,7 @@
   border: 1px solid #278604;
 }
 .button.secondary:hover {
-  background-color: #99ba8b;
+  background-color: #005a00ff;
   color: #fff;
   border: 1px solid #278604;
 }
@@ -103,7 +103,7 @@
   border: 1px solid #278604;
 }
 .button.delete:hover {
-  background-color: #99ba8b;
+  background-color: #005a00ff;
   color: #fff;
   border: 1px solid #005a00ff;
 }
@@ -116,7 +116,7 @@
 }
 
 .button.list:hover {
-  background-color: #99ba8b;
+  background-color: #005a00ff;
   color: #fff;
   border: 1px solid #005a00ff;
 }
