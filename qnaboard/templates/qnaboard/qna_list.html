@@ -60,7 +60,7 @@
                                 <td>{{ post.id }}</td>
                                 <td>{{ post.qb_title }}</td>
                                 <td>{{ post.user }}</td>
-                                <td>{{ post.qb_date }}</td>
+                                <td>{{ post.qb_date|date:'Y-m-d H:i' }}</td>
                                 <td>{{ post.qb_view_count }}</td>
                             </tr>
                         {% endfor %}

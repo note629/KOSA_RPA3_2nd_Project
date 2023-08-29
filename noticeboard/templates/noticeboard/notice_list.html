@@ -40,7 +40,7 @@
                                 style="cursor: pointer">
                                 <td>{{ notice.id }}</td>
                                 <td>{{ notice.nb_title }}</td>
-                                <td>{{ notice.nb_date }}</td>
+                                <td>{{ notice.nb_date|date:'Y-m-d H:i' }}</td>
                                 <td>{{ notice.nb_view_count }}</td>
                             </tr>
                         {% endfor %}

@@ -50,8 +50,8 @@ def nb_create(request):
 
             if notice_form.is_valid():
                 print(request.FILES)
-                notice_form.save()
-                return redirect("noticeboard:list")
+                notice = notice_form.save()
+                return redirect("noticeboard:read", notice_id=notice.id)
 
         else:
             notice_form = NoticeForm()
