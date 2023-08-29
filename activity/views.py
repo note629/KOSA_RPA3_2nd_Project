@@ -1,26 +1,26 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.http import JsonResponse
+from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
+from activity.models import GalleryLog, GalleryLikes
 from users.models import User, RecycleLog
-from datetime import datetime, timedelta
+from datetime import datetime
 from dateutil.relativedelta import relativedelta
-
-# Create your views here.
-
-
-def activity_main(request):
-    context = {}
-    return render(request, "activity/maintest.html", context)
 
 
 def user_rank(request):
     # 전체 유저 객체 획득
     users = User.objects.all()
+    likes = GalleryLikes.objects.all()
 
     # 전체 유저 객체에 대한 로그 수와 유저 이름을 담는 리스트 생성 및 삽입
     all_user_rank_list = []
     for user in users:
+        total_likes = sum(
+            [log.gallerylikes_set.count() for log in user.gallerylog_set.all()]
+        )
         all_user_rank_list.append(
             [
-                user.recyclelog_set.all().count(),
+                user.recyclelog_set.all().count() + total_likes,
                 user.username,
                 user.recyclelog_set.all().order_by("-use_date").first(),
             ]
@@ -39,8 +39,11 @@ def user_rank(request):
     # 유저가 접속하지 않은 상태면 모든 유저의 랭크만 전달
     current_user = request.user
     if current_user.is_authenticated:
+        total_likes = sum(
+            [log.gallerylikes_set.count() for log in current_user.gallerylog_set.all()]
+        )
         current_user_data = [
-            current_user.recyclelog_set.all().count(),
+            current_user.recyclelog_set.all().count() + total_likes,
             current_user.username,
             current_user.recyclelog_set.all().order_by("-use_date").first(),
         ]
@@ -50,13 +53,16 @@ def user_rank(request):
             "all_user_rank_list": all_user_rank_list,
             "current_user_data": current_user_data,
             "current_user_rank": current_user_rank + 1,
+            "page_title": "사용자 분리수거 순위",
         }
     else:
         context = {
             "all_user_rank_list": all_user_rank_list,
+            "page_title": "사용자 분리수거 순위",
         }
 
-    return render(request, "activity/ranktest.html", context)
+    # return render(request, "activity/ranktest.html", context)
+    return render(request, "activity/rank.html", context)
 
 
 def recycle_log_status(request):
@@ -110,6 +116,63 @@ def recycle_log_status(request):
             month_null_logs_num,
         ],
         "month_logs_num_list": month_logs_num_list13,
+        "page_title": "월간 분리수거 통계",
     }
 
-    return render(request, "activity/statustest.html", context)
+    return render(request, "activity/status.html", context)
+
+
+def gallery_view(request):
+    Gallery_lists = GalleryLog.objects.all()
+
+    img_and_name_lists = []
+    for lists in Gallery_lists:
+        img_and_name = []
+        img_and_name.append((lists.recyclelog.input_img.url).split("/")[-1])
+        img_and_name.append((lists.recyclelog.user.username))
+        img_and_name.append((lists.id))
+        like_status = False
+        if request.user.is_authenticated:
+            like_status = GalleryLikes.objects.filter(
+                user=request.user, gallerylog=lists
+            ).exists()
+        like_count = GalleryLikes.objects.filter(gallerylog=lists).count()
+        img_and_name.append(like_status)
+        img_and_name.append(like_count)
+
+        img_and_name_lists.append(img_and_name)
+
+    post_id = request.POST.get("gallerylog_id")
+    print(post_id)
+    context = {
+        "img_and_name_lists": img_and_name_lists,
+        "page_title": "최고의 쓰레기 갤러리",
+    }
+    return render(request, "activity/gallery.html", context)
+
+
+@csrf_exempt
+def like_toggle(request):
+    gallerylog_id = request.POST.get("gallerylog_id")
+
+    try:
+        gallerylog = GalleryLog.objects.get(id=gallerylog_id)
+    except GalleryLog.DoesNotExist:
+        return JsonResponse({"status": False, "error": "GalleryLog does not exist."})
+
+    like_status = False
+
+    like_qs = GalleryLikes.objects.filter(user=request.user, gallerylog=gallerylog)
+    print(like_qs)
+    if like_qs.exists():
+        # If a Like object exists for this user and post,
+        # delete it -> this means unlike the post.
+        like_qs.delete()
+        like_status = False
+    else:
+        # If no Like object exists for this user and post,
+        # create one -> this means liking the post.
+        GalleryLikes.objects.create(user=request.user, gallerylog=gallerylog)
+        like_status = True
+
+    return JsonResponse({"status": like_status})

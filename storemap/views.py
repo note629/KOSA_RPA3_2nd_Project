@@ -9,7 +9,7 @@ from users.models import RecycleLog
 
 def storemap_view(request):
     #################################
-    # (임시 Dummy Data 생성 user_id 값은 로그인 되어 있는 user_id로 생성됨)
+    #### (임시 Dummy Data 생성 user_id 값은 로그인 되어 있는 user_id로 생성됨)
     #
     # if request.user.is_authenticated:
     #     for classify_item_num in range(0, 52):
@@ -21,4 +21,4 @@ def storemap_view(request):
     #             )
     #             obj.save()
     #################################
-    return render(request, "storemap/zerobasemap.html")
+    return render(request, "storemap/zerobasemap.html", {"page_title": "지도 검색"})

@@ -30,10 +30,12 @@ def qb_list(request):
     page = request.GET.get("page", 1)
     page_obj = paginator.get_page(page)
 
+
     context = {
         "posts": page_obj,
         "search_form": search_form,
         "query": query,
+        "page_title": "QnA 목록",
     }
 
     return render(request, "qnaboard/qna_list.html", context)
@@ -47,7 +49,11 @@ def qb_read(request, post_id):
         return HttpResponse("해당 게시물을 찾을 수 없습니다.")
 
     comments = Comment.objects.filter(post=post)
-    context = {"post": post, "comments": comments}
+    context = {
+        "post": post,
+        "comments": comments,
+        "page_title": "Title - " + post.qb_title,
+    }
 
     # 조회 수 증가
     post.qb_view_count += 1
@@ -87,7 +93,11 @@ def qb_create(request):
         else:
             post_form = PostForm()
 
-        return render(request, "qnaboard/qna_create.html", {"post_form": post_form})
+        return render(
+            request,
+            "qnaboard/qna_create.html",
+            {"post_form": post_form, "page_title": "QnA 작성"},
+        )
 
 
 # QnA 게시글 수정
@@ -106,7 +116,11 @@ def qb_update(request, post_id):
     else:
         post_form = PostForm(instance=post, user=request.user)
 
-    return render(request, "qnaboard/qna_update.html", {"updateForm": post_form})
+    return render(
+        request,
+        "qnaboard/qna_update.html",
+        {"updateForm": post_form, "page_title": "QnA 수정"},
+    )
 
 
 # QnA 게시글 삭제

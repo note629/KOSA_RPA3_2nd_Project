@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block html_header %}<link href="/static/css/activity_status.css" rel="stylesheet" />{% endblock %}
+{% block html_body %}
+    <ul id="recycle_nums" hidden>
+        <li>{{ logs_num.0 }}</li>
+        <li>{{ logs_num.1 }}</li>
+        <li>{{ logs_num.2 }}</li>
+
+        <li>{{ logs_num_list.0 }}</li>
+        <li>{{ logs_num_list.1 }}</li>
+        <li>{{ logs_num_list.2 }}</li>
+        <li>{{ logs_num_list.3 }}</li>
+        <li>{{ logs_num_list.4 }}</li>
+        <li>{{ logs_num_list.5 }}</li>
+        <li>{{ logs_num_list.6 }}</li>
+        <li>{{ logs_num_list.7 }}</li>
+        <li>{{ logs_num_list.8 }}</li>
+        <li>{{ logs_num_list.9 }}</li>
+        <li>{{ logs_num_list.10 }}</li>
+        <li>{{ logs_num_list.11 }}</li>
+        <li>{{ logs_num_list.12 }}</li>
+    </ul>
+
+    <ul id="month_recycle_nums" hidden>
+        <li>{{ month_logs_num.0 }}</li>
+        <li>{{ month_logs_num.1 }}</li>
+        <li>{{ month_logs_num.2 }}</li>
+
+        <li>{{ month_logs_num_list.0 }}</li>
+        <li>{{ month_logs_num_list.1 }}</li>
+        <li>{{ month_logs_num_list.2 }}</li>
+        <li>{{ month_logs_num_list.3 }}</li>
+        <li>{{ month_logs_num_list.4 }}</li>
+        <li>{{ month_logs_num_list.5 }}</li>
+        <li>{{ month_logs_num_list.6 }}</li>
+        <li>{{ month_logs_num_list.7 }}</li>
+        <li>{{ month_logs_num_list.8 }}</li>
+        <li>{{ month_logs_num_list.9 }}</li>
+        <li>{{ month_logs_num_list.10 }}</li>
+        <li>{{ month_logs_num_list.11 }}</li>
+        <li>{{ month_logs_num_list.12 }}</li>
+    </ul>
+
+    <div class="square">
+        <h1 class="status_title">최근 1달 재활용품 분리수거 현황</h1>
+        <div>
+            <div id="piechart" class="status_pie"></div>
+            <div id="chart_div" class="status_bar"></div>
+        </div>
+ 
+        <div class="div_centered">
+            <ul class="tg-list">
+ 
+                <li class="tg-list-item">
+                    <input class="tgl tgl-skewed" id="status_btn" type="checkbox" />
+                    <label class="tgl-btn"
+                           data-tg-off="전체 기간 보기"
+                           data-tg-on="최근 1달 보기"
+                           for="status_btn"></label>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="/static/js/activity_status.js"></script>
+{% endblock %}

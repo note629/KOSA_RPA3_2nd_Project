@@ -65,7 +65,7 @@ function createPie(dataElement, pieElement) {
     "purple",
     "turquoise",
     "lightseagreen",
-    "navy",
+    "lightpink",
     "gray",
     "LightSlateGray",
     "MintCream",

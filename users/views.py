@@ -1,10 +1,6 @@
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
-from django.contrib.auth.forms import PasswordChangeForm, SetPasswordForm
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect, get_object_or_404
-from pyexpat.errors import messages
-
-from qnaboard.models import Post
+from django.shortcuts import render, redirect
 from users.forms import LoginForm, SignupForm, MypageForm, CustomPasswordChangeForm
 from users.models import User, RecycleLog
 
@@ -53,33 +49,36 @@ def signup(request):
     else:
         form = SignupForm()
 
-    context = {"form": form}
+    context = {"form": form, "page_title": "SignUp"}
     return render(request, "users/signup.html", context)
 
 
 def mypage_view(request):
     if not request.user.is_authenticated:
-        return redirect("/")
+        return redirect("users:login_view")
 
     if request.user.is_authenticated:
         ###############################################################################
         user = request.user
         user_name = User.objects.get(id=request.user.id)
         ###############################################################################
-        logs_num_list52 = []
-        for i in range(52):
-            logs_num_list52.append(
-                len(list(RecycleLog.objects.filter(user=user, classify_item=str(i))))
-            )
-        total_logs_num = RecycleLog.objects.count()
-        null_logs_num = total_logs_num - sum(logs_num_list52)
-        print(total_logs_num, logs_num_list52, null_logs_num)
+        if RecycleLog.objects.filter(user=user) != None:
+            logs_num_list52 = []
+            for i in range(52):
+                logs_num_list52.append(
+                    len(
+                        list(RecycleLog.objects.filter(user=user, classify_item=str(i)))
+                    )
+                )
+            total_logs_num = RecycleLog.objects.filter(
+                user=user, classify_item__isnull=False
+            ).count()
+            null_logs_num = total_logs_num - sum(logs_num_list52)
+            print(total_logs_num, logs_num_list52, null_logs_num)
 
-        logs_num_list13 = []
-        for i in range(13):
-            logs_num_list13.append(sum(logs_num_list52[4 * i : 4 * (i + 1)]))
-        ###############################################################################
-        Post.objects.filter(user=user)
+            logs_num_list13 = []
+            for i in range(13):
+                logs_num_list13.append(sum(logs_num_list52[4 * i : 4 * (i + 1)]))
         ###############################################################################
         if request.method == "POST":
             form = MypageForm(request.POST, instance=user)
@@ -94,13 +93,14 @@ def mypage_view(request):
             "user_name": user_name.username,
             "logs_num_list13": logs_num_list13,
             "total_logs_num": total_logs_num,
+            "page_title": user_name.username + "님의 마이페이지",
         }
         return render(request, "users/mypage.html", context)
 
 
 def change_password_view(request):
     if not request.user.is_authenticated:
-        return redirect("/")
+        return redirect("users:login_view")
 
     if request.user.is_authenticated:
         user = request.user
@@ -109,9 +109,13 @@ def change_password_view(request):
             form = CustomPasswordChangeForm(user, request.POST)
             if form.is_valid():
                 user_auth = form.save()
-                update_session_auth_hash(request, user_auth)  # Important!
+                update_session_auth_hash(request, user_auth)
                 return redirect("users:mypage_view")
         else:
             form = CustomPasswordChangeForm(user)
-        context = {"form": form, "user": user}
+        context = {
+            "form": form,
+            "user": user,
+            "page_title": user.username + "님의 비밀번호 변경",
+        }
         return render(request, "users/change_password.html", context)

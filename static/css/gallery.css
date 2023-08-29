@@ -1,0 +1,132 @@
+.gallery_title_text {
+  position: relative;
+  left: 40%;
+  color: #55654d;
+  font-weight: bold;
+  margin-bottom: 2%;
+  margin-top: 1%;
+}
+.grid-container {
+  columns: 5 200px;
+  column-gap: 1.5rem;
+  width: 90%;
+  margin: 0 auto;
+}
+.grid-container div {
+  width: 150px;
+  margin: 0 1.5rem 1.5rem 0;
+  display: inline-block;
+  width: 100%;
+  border: solid 2px black;
+  padding: 5px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  transition: all 0.25s ease-in-out;
+}
+.grid-container div:hover img {
+  filter: grayscale(0);
+}
+.grid-container div:hover {
+  border-color: coral;
+}
+.grid-container div img {
+  width: 100%;
+  filter: grayscale(100%);
+  border-radius: 5px;
+  transition: all 0.25s ease-in-out;
+}
+.grid-container div p {
+  margin: 5px 0;
+  padding: 0;
+  text-align: center;
+  font-style: italic;
+}
+
+h3 {
+  margin-top: 30px;
+  font-size: 18px;
+  color: #555;
+}
+
+.btn {
+  box-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5) inset;
+  border-radius: 3px;
+  border: 1px solid;
+  display: inline-block;
+  height: 18px;
+  line-height: 18px;
+  padding: 0 8px;
+  position: relative;
+
+  font-size: 12px;
+  text-decoration: none;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.btn-counter {
+  margin-right: 39px;
+}
+.btn-counter:after,
+.btn-counter:hover:after {
+  text-shadow: none;
+}
+.btn-counter:after {
+  border-radius: 3px;
+  border: 1px solid #d3d3d3;
+  background-color: #eee;
+  padding: 0 8px;
+  color: #777;
+  content: attr(data-count);
+  left: 100%;
+  margin-left: 8px;
+  margin-right: -13px;
+  position: absolute;
+  top: -1px;
+}
+.btn-counter:before {
+  transform: rotate(45deg);
+  filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.7071067811865476, M12=-0.7071067811865475, M21=0.7071067811865475, M22=0.7071067811865476, sizingMethod='auto expand');
+
+  background-color: #eee;
+  border: 1px solid #d3d3d3;
+  border-right: 0;
+  border-top: 0;
+  content: "";
+  position: absolute;
+  right: -13px;
+  top: 5px;
+  height: 6px;
+  width: 6px;
+  z-index: 1;
+  zoom: 1;
+}
+
+.btn {
+  background-color: #dbdbdb;
+  border-color: #bbb;
+  color: #666;
+  position: relative;
+  right: -25%;
+}
+.btn:hover,
+.btn.active {
+  text-shadow: 0 1px 0 #b12f27;
+  background-color: #f64136;
+  border-color: #b12f27;
+}
+.btn:active {
+  box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.2) inset;
+}
+.btn span {
+  color: #f64136;
+}
+.btn:hover,
+.btn:hover span,
+.btn.active,
+.btn.active span {
+  color: #eeeeee;
+}
+.btn:active span {
+  color: #b12f27;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+}

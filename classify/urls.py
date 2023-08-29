@@ -10,4 +10,5 @@ app_name = "classify"
 urlpatterns = [
     path("", views.image_upload, name="image_upload"),
     path("result/", views.classify_yolo, name="classify_yolo"),
+    path("result/upload/", views.upload_to_gallery, name="upload_to_gallery"),
 ]

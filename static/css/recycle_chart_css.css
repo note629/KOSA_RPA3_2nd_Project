@@ -4,6 +4,10 @@
   }
 }
 
+body {
+  position: fixed;
+  width: 100%;
+}
 main {
   width: 400px;
   margin: 30px auto;
@@ -27,8 +31,8 @@ section {
   width: 400px;
   height: 400px;
   clip: rect(0px, 400px, 400px, 200px);
-  animation: bake-pie 1s;
 }
+
 .slice span {
   display: block;
   position: absolute;
@@ -40,6 +44,7 @@ section {
   border-radius: 50%;
   clip: rect(0px, 400px, 400px, 200px);
 }
+
 .legend {
   list-style-type: none;
   padding: 0;
@@ -64,4 +69,49 @@ section {
 }
 .legend span {
   float: right;
+}
+.square {
+  width: 1500px;
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 40px;
+  border: dashed;
+  border-width: 10px;
+  border-color: #a6ca99;
+  position: relative;
+  left: 6%;
+  background-color: rgb(239, 252, 235);
+}
+.pass_square {
+  padding-bottom: 20px;
+  width: 800px;
+  max-height: 500px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 40px;
+  border: dashed;
+  border-width: 10px;
+  border-color: #a6ca99;
+  position: relative;
+  left: 30%;
+  transform: translate(0%, 35%);
+  background-color: rgb(239, 252, 235);
+}
+.pass_form-control {
+  max-width: 40%;
+}
+.pass_div {
+  display: flex;
+  flex-direction: column;
+  transform: translate(30%, 0%);
+}
+.pass_h1 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  left: 20%;
+  font-weight: bold;
+}
+.pass_div_button {
+  transform: translate(6%, 0%);
 }

@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>{{ page_title }}</title>
+        <title>분리수고 {{ page_title }}</title>
 
         <!-- JQuery CDN -->
         <script src="https://code.jquery.com/jquery-2.2.4.min.js"
@@ -36,12 +36,6 @@
                         <img class="mainlogo" src="/static/image/logo.png" alt="#" />
                     </a>
                 </a>
-                <button type="button"
-                        class="navbar-toggler"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#navbarCollapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
                 <div class="collapse navbar-collapse py-4 py-lg-0" id="navbarCollapse">
                     <div class="navbar-nav ms-auto">
                         <a href="/" class="nav-item nav-link">Home</a>
@@ -53,7 +47,8 @@
                                data-bs-toggle="dropdown">Activity</a>
                             <div class="dropdown-menu rounded-0 rounded-bottom m-0">
                                 <a href="{% url 'activity:user_rank' %}" class="dropdown-item">사용자 분리수거 순위</a>
-                                <a href="/" class="dropdown-item">월간 분리수거 통계</a>
+                                <a href="{% url 'activity:recycle_status' %}" class="dropdown-item">월간 분리수거 통계</a>
+                                <a href="{% url 'activity:gallery_view' %}" class="dropdown-item">최고의 쓰레기 갤러리</a>
                             </div>
                         </div>
                         <a href="{% url 'storemap:storemap_view' %}" class="nav-item nav-link">StoreMap</a>
