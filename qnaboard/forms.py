@@ -28,17 +28,19 @@ class PostForm(forms.ModelForm):
                     "placeholder": "자세한 질문 사항이나 인증 내용을 입력해주세요",
                 }
             ),
-            # "qb_image": forms.ImageField(
-            #     attrs={
-            #         "class": "form-control w-75",
-            #         "placeholder": "첨부파일",
-            #     }
-            # ),
         }
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop("user", None)  # 사용자 정보를 받기 위한 변수
         super().__init__(*args, **kwargs)
+        # 이미지 업로드
+        self.fields["qb_image"].required = False  # 필수 필드가 아님을 나타냄
+        self.fields["qb_image"].widget.attrs.update(
+            {
+                "class": "form-control w-75",
+                "placeholder": "첨부파일",
+            }
+        )
 
     def save(self, commit=True):
         instance = super().save(commit=False)
@@ -55,14 +57,14 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ["qc_content"]
 
-        labels = {
-            "qc_content": "댓글",
-        }
+        # labels = {
+        #     "qc_content": "댓글",
+        # }
 
         widgets = {
             "qc_content": forms.TextInput(
                 attrs={
-                    "class": "form-control w-50",
+                    "class": "form-control",
                     "placeholder": "댓글 작성",
                     "style": "margin-bottom : 10px;",
                 }

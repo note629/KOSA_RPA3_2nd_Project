@@ -36,6 +36,7 @@ def qb_read(request, post_id):
     post.qb_view_count += 1
     post.save()
 
+    # 댓글 기능
     if request.user.is_authenticated:
         if request.method == "POST":
             comment_form = CommentForm(request.POST)

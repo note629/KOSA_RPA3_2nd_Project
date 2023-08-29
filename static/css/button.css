@@ -8,12 +8,12 @@
   transition: 0.3s;
 }
 .btn-primary {
-  --bs-btn-hover-bg: #ffffff;
-  --bs-btn-hover-border-color: #ffffff;
-  --bs-btn-hover-color: rgba(166, 202, 153, 0.76);
-  --btn-color: white;
-  --btn-bg: var(--primary-color);
-  --btn-border: 1px solid var(--btn-bg);
+  --bs-btn-hover-bg: #99ba8b;
+  --bs-btn-hover-border-color: #278604;
+  --bs-btn-hover-color: 0 0;
+  --btn-color: 0 0;
+  --btn-bg: var(--secondary-color-lightest);
+  color: #ffffff;
 }
 .btn-primary.disabled {
   --btn-bg: var(--primary-color-lighter);
@@ -24,7 +24,7 @@
   --btn-radius: 4px;
   position: relative;
   padding: var(--btn-padding);
-  color: var(--btn-color, #000);
+  color: var(--btn-color, #ffffff);
   background: var(--btn-bg, #fff);
   border: var(--btn-border);
   border-radius: var(--btn-radius);
@@ -41,48 +41,10 @@ textarea {
   line-height: 1.15;
   margin: 0;
 }
-/*user agent stylesheet button {*/
-/*  appearance: auto;*/
-/*  font-style:;*/
-/*  font-variant-ligatures:;*/
-/*  font-variant-caps:;*/
-/*  font-variant-numeric:;*/
-/*  font-variant-east-asian:;*/
-/*  font-variant-alternates:;*/
-/*  font-weight:;*/
-/*  font-stretch:;*/
-/*  font-size:;*/
-/*  font-family:;*/
-/*  font-optical-sizing:;*/
-/*  font-kerning:;*/
-/*  font-feature-settings:;*/
-/*  font-variation-settings:;*/
-/*  text-rendering: auto;*/
-/*  color: buttontext;*/
-/*  letter-spacing: normal;*/
-/*  word-spacing: normal;*/
-/*  line-height: normal;*/
-/*  text-transform: none;*/
-/*  text-indent: 0px;*/
-/*  text-shadow: none;*/
-/*  display: inline-block;*/
-/*  text-align: center;*/
-/*  align-items: flex-start;*/
-/*  cursor: default;*/
-/*  box-sizing: border-box;*/
-/*  background-color: buttonface;*/
-/*  writing-mode: horizontal-tb !important;*/
-/*  margin: 0em;*/
-/*  padding-block: 1px;*/
-/*  padding-inline: 6px;*/
-/*  border-width: 2px;*/
-/*  border-style: outset;*/
-/*  !*border-color: buttonborder;*!*/
-/*  border-image: initial;*/
-/*}*/
+
 :root {
   --primary-color: hsl(104, 32%, 70%);
-  --secondary-color: hsl(217, 15%, 83%);
+  --secondary-color: hsl(104, 94%, 27%);
   --success-color: hsl(165, 58%, 55%);
   --info-color: hsl(214, 79%, 65%);
   --warning-color: hsl(43, 100%, 66%);
