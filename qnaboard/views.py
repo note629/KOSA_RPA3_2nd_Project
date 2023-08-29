@@ -30,7 +30,6 @@ def qb_list(request):
     page = request.GET.get("page", 1)
     page_obj = paginator.get_page(page)
 
-
     context = {
         "posts": page_obj,
         "search_form": search_form,
@@ -87,8 +86,8 @@ def qb_create(request):
             post_form = PostForm(request.POST, request.FILES, user=request.user)
 
             if post_form.is_valid():
-                post_form.save()
-                return redirect("qnaboard:list")
+                post = post_form.save()
+                return redirect("qnaboard:read", post_id=post.id)
 
         else:
             post_form = PostForm()
