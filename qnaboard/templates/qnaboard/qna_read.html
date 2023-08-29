@@ -22,13 +22,20 @@
             <!-- 버튼 -->
             <div class="post-actions">
                 {% if post.user == request.user %}
-                    <a href="/qnaboard/update/{{ post.id }}" class="button secondary">수정</a>
+                    {#                    <a href="/qnaboard/update/{{ post.id }}" class="button secondary">수정</a>#}
+                    <button type="button"
+                            onclick="location.href='/qnaboard/update/{{ post.id }}'"
+                            class="button secondary">수정</button>
                     <button type="button"
                             onclick="location.href='/qnaboard/list'"
-                            class="btn-write">목록</button>
-                    <a href="/qnaboard/delete/{{ post.id }}" class="button delete">삭제</a>
+                            class="button list">목록</button>
+                    <button type="button"
+                            onclick="location.href='/qnaboard/delete/{{ post.id }}'"
+                            class="button delete">삭제</button>
                 {% else %}
-                    <button type="button" onclick="location.href='/qnaboard/list'" class="button">목록</button>
+                    <button type="button"
+                            onclick="location.href='/qnaboard/list'"
+                            class="button list">목록</button>
                 {% endif %}
             </div>
         {% else %}

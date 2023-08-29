@@ -62,14 +62,9 @@
 }
 
 .btn-write {
-  display: inline-block;
-  padding: 10px 10px;
-  background-color: rgba(0, 0, 0, 0);
-  color: #99ba8b;
-  border: 1px solid #278604; /* 초록색 테두리 추가 */
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  background-color: #99ba8b;
+  color: #fff;
+  border-color: #005a00;
   float: right; /* 버튼을 오른쪽으로 이동 */
 }
 
@@ -89,11 +84,39 @@
   color: #fff;
 }
 
+/*수정*/
 .button.secondary {
-  background-color: #666;
-  margin-right: 10px;
+  background-color: rgba(0, 0, 0, 0);
+  color: #99ba8b;
+  border: 1px solid #278604;
+}
+.button.secondary:hover {
+  background-color: #99ba8b;
+  color: #fff;
+  border: 1px solid #278604;
 }
 
+/*삭제*/
 .button.delete {
-  background-color: #e74c3c;
+  background-color: rgba(0, 0, 0, 0);
+  color: #99ba8b;
+  border: 1px solid #278604;
+}
+.button.delete:hover {
+  background-color: #99ba8b;
+  color: #fff;
+  border: 1px solid #005a00ff;
+}
+
+/*목록*/
+.button.list {
+  background-color: #99ba8b;
+  color: #fff;
+  border: 1px solid #005a00ff;
+}
+
+.button.list:hover {
+  background-color: #99ba8b;
+  color: #fff;
+  border: 1px solid #005a00ff;
 }

@@ -19,15 +19,19 @@
             <!-- 버튼 -->
             <div class="post-actions">
                 {% if request.user.is_superuser %}
-                    <a href="/noticeboard/update/{{ notice.id }}" class="button secondary">수정</a>
                     <button type="button"
-                            onclick="location.href='/noticeboard/list/'"
-                            class="btn-write">목록</button>
-                    <a href="/noticeboard/delete/{{ notice.id }}" class="button delete">삭제</a>
+                            onclick="location.href='/noticeboard/update/{{ notice.id }}'"
+                            class="button secondary">수정</button>
+                    <button type="button"
+                            onclick="location.href='/noticeboard/list'"
+                            class="button list">목록</button>
+                    <button type="button"
+                            onclick="location.href='/noticeboard/delete/{{ notice.id }}'"
+                            class="button delete">삭제</button>
                 {% else %}
                     <button type="button"
-                            onclick="location.href='/noticeboard/list/'"
-                            class="button">목록</button>
+                            onclick="location.href='/noticeboard/list'"
+                            class="button list">목록</button>
                 {% endif %}
             </div>
         </div>
