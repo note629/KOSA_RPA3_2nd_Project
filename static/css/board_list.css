@@ -130,19 +130,10 @@ body {
 /* 검색 #board-search*/
 #board-search .search-window {
   padding: 15px 0;
-  /*background-color: #e9efe8;*/
-  /*border-color: #278604;*/
-
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   border: 1px solid #99ba8b;
-  /*  */
-  /*padding: 15px;*/
-  /*border-radius: 8px;*/
-  /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);*/
-  /*background-color: #fff;*/
-  /*border: 1px solid #99ba8b;*/
 }
 #board-search .search-window .search-wrap {
   position: relative;

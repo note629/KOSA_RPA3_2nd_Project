@@ -83,3 +83,8 @@ class CommentForm(forms.ModelForm):
         if commit:
             instance.save()
         return instance
+
+
+# 검색 기능
+class SearchForm(forms.Form):
+    query = forms.CharField(label="Search", max_length=100)

@@ -24,33 +24,24 @@
         <div id="board-search">
             <div class="container">
                 <div class="search-window">
-                    <form action="">
+                    <form action="{% url 'qnaboard:list' %}" method="GET">
                         <div class="search-wrap">
                             {#                            <label for="search" class="blind">공지사항 내용 검색</label>#}
-                            <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
+                            <input id="search"
+                                   type="search"
+                                   name="query"
+                                   placeholder="검색어를 입력해주세요."
+                                   value="{{ query }}">
                             <button type="submit" class="btnn btn-dark">검색</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-
+ 
+        <!-- Table -->
         <div class="scroll-window-wrapper">
             <div class="scroll-window">
-
-                {#                <div id="board-search">#}
-                {#                    <div class="container">#}
-                {#                        <div class="search-window" style="border: none">#}
-                {#                            <form action="">#}
-                {#                                <div class="search-wrap">#}
-                {#                            <label for="search" class="blind">공지사항 내용 검색</label>#}
-                {#                                    <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">#}
-                {#                                    <button type="submit" class="btnn btn-dark">검색</button>#}
-                {#                                </div>#}
-                {#                            </form>#}
-                {#                        </div>#}
-                {#                    </div>#}
-                {#                </div>#}
                 <table class="tables is-fixed-header">
                     <thead>
                         <tr>
