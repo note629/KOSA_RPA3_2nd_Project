@@ -18,7 +18,7 @@ class Post(models.Model):
 class Comment(models.Model):
     user = models.ForeignKey("users.User", verbose_name="작성자", on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    qc_content = models.TextField("내용")
+    qc_content = models.TextField("댓글 내용")
     qc_date = models.DateTimeField("작성일", auto_now_add=True)
 
     def __str__(self):
