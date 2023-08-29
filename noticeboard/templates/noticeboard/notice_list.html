@@ -1,37 +1,90 @@
 {% extends "base.html" %}
-{% block html_header %}{% endblock %}
+{% load static %}
+{% block html_header %}
+    <link rel="stylesheet" href="{% static '/css/board_list.css' %}">
+{% endblock %}
+
 {% block html_body %}
-    <h1>공지사항</h1>
-    <br>
-
-    <!-- 글쓰기 버튼을 추가하고 링크 생성 -->
-    {% if request.user.is_superuser %}
-        <a href="{% url 'noticeboard:create' %}" class="btn btn-primary">공지 작성</a></a>
+    <div class="container">
+        <h1 class="page-title">공지사항</h1>
+        <h5 class="page-description">공지 사항 알림 게시판이이에요</h5>
         <br>
-        <br>
-    {% endif %}
-
  
 
-    <table class="table is-fixed-header">
-        <thead>
-            <tr>
-                <th scope="col">No.</th>
-                <th scope="col">제목</th>
-                <th scope="col">작성일</th>
-                <th scope="col">조회수</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for notice in notices %}
-                <tr onclick="window.location='{% url 'noticeboard:read' notice.id %}'"
-                    style="cursor: pointer">
-                    <td>{{ notice.id }}</td>
-                    <td>{{ notice.nb_title }}</td>
-                    <td>{{ notice.nb_date }}</td>
-                    <td>{{ notice.nb_view_count }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-{% endblock %}
+        <!-- 글쓰기 버튼을 추가하고 링크 생성 -->
+        <div class="btn-container">
+            {% if request.user.is_superuser %}
+                <a href="{% url 'noticeboard:create' %}"
+                   class="btn btn-primary btn-write">공지 작성</a>
+                <br>
+                <br>
+            {% endif %}
+        </div>
+
+
+        <div class="scroll-window-wrapper">
+            <div class="scroll-window">
+                <table class="table is-fixed-header">
+                    <thead>
+                        <tr>
+                            <th scope="col">No.</th>
+                            <th scope="col">제목</th>
+                            <th scope="col">작성일</th>
+                            <th scope="col">조회수</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for notice in notices %}
+                            <tr onclick="window.location='{% url 'noticeboard:read' notice.id %}'"
+                                style="cursor: pointer">
+                                <td>{{ notice.id }}</td>
+                                <td>{{ notice.nb_title }}</td>
+                                <td>{{ notice.nb_date }}</td>
+                                <td>{{ notice.nb_view_count }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <!-- 페이징 -->
+                <ul class="pagination justify-content-center">
+                    <!-- 이전-->
+                    {% if notices.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ notices.previous_page_number }}">이전</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+                        </li>
+                    {% endif %}
+
+                    <!-- 페이지리스트 -->
+                    {% for page_number in notices.paginator.page_range %}
+                        {% if page_number >= notices.number|add:-5 and page_number <= notices.number|add:5 %}
+                            {% if page_number == notices.number %}
+                                <li class="page-item active" aria-current="page">
+                                    <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                                </li>
+                            {% else %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                                </li>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+
+                    <!-- 다음 -->
+                    {% if notices.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ notices.next_page_number }}">다음</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+                        </li>
+                    {% endif %}
+                </ul>
+                <!-- 페이징처리 끝 -->
+            </div>
+        {% endblock %}
