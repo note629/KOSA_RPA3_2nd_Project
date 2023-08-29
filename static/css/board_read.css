@@ -1,0 +1,186 @@
+/* 스타일링 추가 */
+.post-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1.5px solid #99ba8b;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.post-title {
+  max-width: 1000px;
+  font-size: 30px;
+  padding: 15px 15px; /*  상자내부 간격 : 위아래 5px, 오른쪽왼쪽 15px  */
+  background: #e9efe8; /* 배경색 컬러코드로 변경가능   */
+  border-radius: 10px; /*  테두리 둥근처리 숫자로 조정가능  */
+  border: 1.5px solid #278604;
+
+  margin: 0 auto; /* 왼쪽과 오른쪽 마진을 자동으로 설정하여 가운데 정렬 */
+  margin-bottom: 10px;
+}
+
+.post-meta {
+  display: flex;
+  justify-content: space-between;
+  color: #888;
+  margin-bottom: 5px;
+}
+
+.post-content {
+  margin-top: 20px;
+}
+
+.post-image {
+  max-width: 100%;
+  max-height: 300px; /* 예시로 300px로 설정 */
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.post-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* 작성 버튼 스타일 */
+.btn-container {
+  max-width: 1100px;
+  /*margin: 0 auto;*/
+  /*padding: 30px;*/
+  margin-top: 1px;
+  margin-bottom: 30px;
+}
+
+.btn-write {
+  display: inline-block;
+  padding: 10px 10px;
+  background-color: rgba(0, 0, 0, 0);
+  color: #99ba8b;
+  border: 1px solid #278604; /* 초록색 테두리 추가 */
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  float: right; /* 버튼을 오른쪽으로 이동 */
+}
+
+.btn-write:hover {
+  background-color: #99ba8b;
+  color: #fff;
+  border-color: #005a00; /* 호버 효과 시 초록색 테두리로 변경 */
+}
+
+/* 버튼 스타일 */
+.button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #fff;
+}
+
+.button.secondary {
+  background-color: #666;
+  margin-right: 10px;
+}
+
+.button.delete {
+  background-color: #e74c3c;
+}
+
+/* 댓글 스타일 */
+.comment-form-container {
+  max-width: 1000px;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comment-heading {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+/*.comment-form {*/
+/*  margin-top: 10px;*/
+/*}*/
+
+.comment-form {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.comment-form input[type="text"] {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.comment-submit-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.comment-submit-button:hover {
+  background-color: #0056b3;
+}
+
+/*.comment-submit-button {*/
+/*  background-color: #007bff;*/
+/*  color: #fff;*/
+/*  border: none;*/
+/*  padding: 8px 16px;*/
+/*  border-radius: 4px;*/
+/*  cursor: pointer;*/
+/*}*/
+
+.comment-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.comment {
+  margin: 10px 0;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.comment-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.comment-user {
+  color: #333;
+  font-weight: bold;
+}
+
+.comment-date {
+  color: #777;
+  font-size: 12px;
+}
+
+.comment-content {
+  margin-top: 5px;
+  left: 50%;
+}
