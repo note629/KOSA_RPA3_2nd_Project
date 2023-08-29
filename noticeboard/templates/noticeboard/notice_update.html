@@ -1,18 +1,37 @@
 {% extends "base.html" %}
-{% block html_header %}{% endblock %}
+{% load static %}
+
+{% block html_header %}
+    <link rel="stylesheet" href="{% static '/css/board_update.css' %}">
+{% endblock %}
+
 {% block html_body %}
-    <body class="demo">
-        <div class="container">
-            <h1>게시물 수정</h1>
-            <br>
-            <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ updateForm.as_p }}
-                <button type="submit">수정 완료</button>
-                <button type="button"
-                        onclick="location.href='/noticeboard/list/'"
-                        class="button">돌아가기</button>
-            </form>
+
+    <div class="site-wrap">
+        <div class="site-section">
+            <div class="container">
+                <div class="col-md-12">
+                    <br>
+                    <h2 class="custom-form-title">게시물 수정</h2>
+                    <br>
+                </div>
+                <div class="col-md-12">
+
+                    <form method="post" enctype="multipart/form-data" class="custom-form">
+                        {% csrf_token %}
+                        {{ updateForm.as_p }}
+                        <div class="form-group row">
+                            <div class="button-container">
+                                <br>
+                                <button type="submit" class="btn-creat">수정 완료</button>
+                                <button type="button"
+                                        onclick="location.href='/noticeboard/list/'"
+                                        class="btn-creat">돌아가기</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-    </body>
+    </div>
 {% endblock %}
