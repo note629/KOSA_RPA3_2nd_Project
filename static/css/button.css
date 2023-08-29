@@ -11,8 +11,10 @@
   --bs-btn-hover-bg: #99ba8b;
   --bs-btn-hover-border-color: #278604;
   --bs-btn-hover-color: 0 0;
+  --bs-btn-active-bg: #79936e;
+  --bs-btn-active-border-color: #278604;
   --btn-color: 0 0;
-  --btn-bg: var(--secondary-color-lightest);
+  --btn-bg: rgba(0, 0, 0, 0);
   color: #ffffff;
 }
 .btn-primary.disabled {
@@ -25,7 +27,7 @@
   position: relative;
   padding: var(--btn-padding);
   color: var(--btn-color, #ffffff);
-  background: var(--btn-bg, #fff);
+  background: rgba(0, 0, 0, 0);
   border: var(--btn-border);
   border-radius: var(--btn-radius);
   white-space: nowrap;
@@ -62,7 +64,7 @@ textarea {
   --warning-color-lighter: hsl(43, 100%, 86%);
   --danger-color-lighter: hsl(354, 81%, 83%);
   --secondary-color-darkest: hsl(215, 11%, 30%);
-  --secondary-color-lightest: hsl(220, 1%, 98%);
+  --secondary-color-lightest: hsla(0, 0%, 100%, 0);
   --ease-in-quad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
   --ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
   --ease-in-quart: cubic-bezier(0.895, 0.03, 0.685, 0.22);

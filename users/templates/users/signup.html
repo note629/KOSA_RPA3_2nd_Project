@@ -1,42 +1,73 @@
 {% extends "base.html" %}
-{% block html_header %}{% endblock %}
+{% block html_header %}<link href="/static/css/login.css" rel="stylesheet">{% endblock %}
 {% block html_body %}
-    <h1>Sign up</h1>
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <!--        {% if form.errors %}<span style="color : red">{{ form.errors }}</span>{% endif %}-->
-        {% if form.errors %}
-            <ul style="color : red">
-                {% for field in form %}
-                    {% for error in field.errors %}<li>{{ error }}</li>{% endfor %}
-                {% endfor %}
-                {% for error in form.non_field_errors %}<li>{{ error }}</li>{% endfor %}
-            </ul>
-        {% endif %}
-        <p>
-            <label for="id_username">닉네임:</label>
-            <input type="text" name="username" minlength="2" required id="id_username">
-        </p>
-        <p>
-            <label for="id_email">이메일:</label>
-            <input type="email" name="email" required id="id_email">
-        </p>
-        <p>
-            <label for="id_password1">비밀번호:</label>
-            <input type="password"
-                   name="password1"
-                   minlength="4"
-                   required
-                   id="id_password1">
-        </p>
-        <p>
-            <label for="id_password2">비밀번호 재확인:</label>
-            <input type="password"
-                   name="password2"
-                   minlength="4"
-                   required
-                   id="id_password2">
-        </p>
-        <button type="submit">회원가입</button>
-    </form>
+    <section class="gradient-custom">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card bg-maintheme text-white" style="border-radius: 1rem;">
+                        <div class="card-body p-5 text-center">
+
+                            <div class="pb-5" id="login">
+
+                                <h2 class="fw-bold mb-2 text-uppercase">SignUp</h2>
+                                <p class="text-white-50 mb-5">회원 정보를 기입해주세요</p>
+                                <form method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    {% if form.errors %}
+                                        <ul style="color : red">
+                                            {% for field in form %}
+                                                {% for error in field.errors %}<li>{{ error }}</li>{% endfor %}
+                                            {% endfor %}
+                                            {% for error in form.non_field_errors %}<li>{{ error }}</li>{% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                    <p>
+                                        <label for="id_username">닉네임</label>
+                                        <input type="text"
+                                               name="username"
+                                               class="form-control form-control-lg"
+                                               minlength="2"
+                                               placeholder="2~20 글자수 허용"
+                                               required
+                                               id="id_username">
+                                    </p>
+                                    <p>
+                                        <label for="id_email">이메일</label>
+                                        <input type="email"
+                                               name="email"
+                                               class="form-control form-control-lg"
+                                               placeholder="올바른 이메일 형식 기입"
+                                               required
+                                               id="id_email">
+                                    </p>
+                                    <p>
+                                        <label for="id_password1">비밀번호</label>
+                                        <input type="password"
+                                               name="password1"
+                                               class="form-control form-control-lg"
+                                               minlength="4"
+                                               placeholder="4 글자 이상"
+                                               required
+                                               id="id_password1">
+                                    </p>
+                                    <p>
+                                        <label for="id_password2">비밀번호 재확인</label>
+                                        <input type="password"
+                                               name="password2"
+                                               class="form-control form-control-lg"
+                                               minlength="4"
+                                               placeholder="재확인"
+                                               required
+                                               id="id_password2">
+                                    </p>
+                                    <button class="btn btn-primary btn-ghost"type="submit">회원가입</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}

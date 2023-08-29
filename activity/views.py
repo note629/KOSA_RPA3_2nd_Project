@@ -1,33 +1,26 @@
-import logging
-
-from django.http import JsonResponse, HttpResponseRedirect
-from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse
+from django.http import JsonResponse
+from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-
 from activity.models import GalleryLog, GalleryLikes
 from users.models import User, RecycleLog
-from datetime import datetime, timedelta
+from datetime import datetime
 from dateutil.relativedelta import relativedelta
-
-# Create your views here.
-
-
-def activity_main(request):
-    context = {}
-    return render(request, "activity/maintest.html", context)
 
 
 def user_rank(request):
     # 전체 유저 객체 획득
     users = User.objects.all()
+    likes = GalleryLikes.objects.all()
 
     # 전체 유저 객체에 대한 로그 수와 유저 이름을 담는 리스트 생성 및 삽입
     all_user_rank_list = []
     for user in users:
+        total_likes = sum(
+            [log.gallerylikes_set.count() for log in user.gallerylog_set.all()]
+        )
         all_user_rank_list.append(
             [
-                user.recyclelog_set.all().count(),
+                user.recyclelog_set.all().count() + total_likes,
                 user.username,
                 user.recyclelog_set.all().order_by("-use_date").first(),
             ]
@@ -46,8 +39,11 @@ def user_rank(request):
     # 유저가 접속하지 않은 상태면 모든 유저의 랭크만 전달
     current_user = request.user
     if current_user.is_authenticated:
+        total_likes = sum(
+            [log.gallerylikes_set.count() for log in current_user.gallerylog_set.all()]
+        )
         current_user_data = [
-            current_user.recyclelog_set.all().count(),
+            current_user.recyclelog_set.all().count() + total_likes,
             current_user.username,
             current_user.recyclelog_set.all().order_by("-use_date").first(),
         ]
@@ -121,7 +117,6 @@ def recycle_log_status(request):
     }
 
     return render(request, "activity/status.html", context)
-
 
 
 def gallery_view(request):
