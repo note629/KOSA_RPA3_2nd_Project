@@ -10,7 +10,6 @@ from dateutil.relativedelta import relativedelta
 def user_rank(request):
     # 전체 유저 객체 획득
     users = User.objects.all()
-    likes = GalleryLikes.objects.all()
 
     # 전체 유저 객체에 대한 로그 수와 유저 이름을 담는 리스트 생성 및 삽입
     all_user_rank_list = []
