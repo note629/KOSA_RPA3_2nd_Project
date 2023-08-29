@@ -1,0 +1,147 @@
+/* 댓글 작성 관련 스타일 */
+.comment-form-container {
+  max-width: 1000px;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-style: solid;
+  border-width: 1px;
+  border-color: #007bff;
+
+  margin: 0 auto;
+}
+
+.comment-heading {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.comment-form {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  margin-left: 40px;
+}
+
+.comment-form input[type="text"] {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-right: 10px;
+  width: 800px;
+}
+
+/* 댓글 목록 관련 스타일*/
+.comment-list-container {
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0 auto;
+}
+
+.comment {
+  margin: 10px 0;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-style: solid;
+  border-width: 1px;
+  border-color: #666;
+  width: 100%;
+}
+
+.comment-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 15px;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #888;
+}
+
+.comment-user {
+  color: #333;
+  font-weight: bold;
+  margin-right: 50%;
+}
+
+.comment-date {
+  color: #777;
+}
+
+.comment-content {
+  margin-top: 5px;
+  margin-left: 50px;
+  /*left: 50%;*/
+}
+
+/* 댓글 수정 관련 스타일*/
+.comment-update-span {
+  margin-bottom: 0;
+  margin-left: 40px;
+}
+
+.comment-update-form-container.comment-list-container {
+  max-width: 1000px;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  /*margin-bottom: 20px;*/
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-style: dashed;
+  border-width: 2px;
+  border-color: #ccc;
+  margin: 0 auto;
+}
+
+/*댓글 작성 버튼 관련 스타일*/
+.comment-submit-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.comment-submit-button:hover {
+  background-color: #0056b3;
+}
+
+/*댓글 수정 버튼 관련 스타일*/
+.comment-update-button {
+  padding: 10px 20px;
+  background-color: #666;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.comment-update-button:hover {
+  background-color: #333;
+}
+
+/*댓글 삭제 버튼 관련 스타일*/
+.comment-delete-button {
+  padding: 10px 20px;
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 855px;
+}
+
+.comment-delete-button:hover {
+  background-color: #b71c0c;
+}
