@@ -19,14 +19,14 @@ class NoticeForm(forms.ModelForm):
         widgets = {
             "nb_title": forms.TextInput(
                 attrs={
-                    "class": "form-control w-50",
+                    "class": "form-control",
                     "placeholder": "공지 제목",
                     "style": "margin-bottom : 10px;",
                 }
             ),
             "nb_content": forms.Textarea(
                 attrs={
-                    "class": "form-control w-75",
+                    "class": "form-control",
                     "placeholder": "공지 내용 작성",
                 }
             ),
@@ -49,7 +49,7 @@ class NoticeForm(forms.ModelForm):
         self.fields["nb_image"].required = False  # 필수 필드가 아님을 나타냄
         self.fields["nb_image"].widget.attrs.update(
             {
-                "class": "form-control w-75",
+                "class": "form-control",
                 "placeholder": "첨부파일",
             }
         )

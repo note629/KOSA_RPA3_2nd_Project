@@ -1,18 +1,3 @@
-.gradient-custom {
-  /* fallback for old browsers */
-  background: #a6ca99;
-
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(
-    to right,
-    rgb(219, 238, 212),
-    rgb(239, 252, 235)
-  );
-
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(to right, rgb(219, 238, 212), rgb(239, 252, 235));
-}
-
 .bg-maintheme {
   background-color: #a6ca99;
 }
@@ -25,11 +10,23 @@
   width: 45px;
   height: 45px;
 }
-
-.mainlogo {
-  margin-top: 10px;
-  width: auto; /* 원하는 너비로 변경하세요 */
-  height: 45px; /* 높이를 자동으로 조절하려면 auto를 사용하세요 */
+@media (max-width: 991px) {
+  nav .mainlogo {
+    margin-top: 10px;
+    width: auto; /* 원하는 너비로 변경하세요 */
+    height: 75px; /* 높이를 자동으로 조절하려면 auto를 사용하세요 */
+  }
+  .px-4 {
+    padding-right: 99.5rem !important;
+    padding-left: 1.5rem !important;
+  }
+}
+@media (min-width: 992px) {
+  nav .mainlogo {
+    margin-top: 10px;
+    width: auto; /* 원하는 너비로 변경하세요 */
+    height: 45px; /* 높이를 자동으로 조절하려면 auto를 사용하세요 */
+  }
 }
 
 .navbar-nav,
@@ -84,6 +81,7 @@
   flex-direction: row;
   justify-content: center;
   font-weight: bold;
+  color: #79936e;
 }
 
 .mypage-sub {

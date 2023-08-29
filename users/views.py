@@ -49,7 +49,7 @@ def signup(request):
     else:
         form = SignupForm()
 
-    context = {"form": form}
+    context = {"form": form, "page_title": "SignUp"}
     return render(request, "users/signup.html", context)
 
 
@@ -93,6 +93,7 @@ def mypage_view(request):
             "user_name": user_name.username,
             "logs_num_list13": logs_num_list13,
             "total_logs_num": total_logs_num,
+            "page_title": user_name.username + "님의 마이페이지",
         }
         return render(request, "users/mypage.html", context)
 
@@ -112,5 +113,9 @@ def change_password_view(request):
                 return redirect("users:mypage_view")
         else:
             form = CustomPasswordChangeForm(user)
-        context = {"form": form, "user": user}
+        context = {
+            "form": form,
+            "user": user,
+            "page_title": user.username + "님의 비밀번호 변경",
+        }
         return render(request, "users/change_password.html", context)

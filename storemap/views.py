@@ -21,4 +21,4 @@ def storemap_view(request):
     #             )
     #             obj.save()
     #################################
-    return render(request, "storemap/zerobasemap.html")
+    return render(request, "storemap/zerobasemap.html", {"page_title": "지도 검색"})

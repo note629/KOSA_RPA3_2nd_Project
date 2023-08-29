@@ -16,17 +16,28 @@
             </div>
             <hr>
             <div class="post-content">{{ post.qb_content }}</div>
+
+            <!-- 이미지 보여주기 -->
             {% if post.qb_image %}<img src="{{ post.qb_image.url }}" alt="게시글 이미지" class="post-image">{% endif %}
 
+            <!-- 버튼 -->
             <div class="post-actions">
-                {#                <button type="button" onclick="location.href='/qnaboard/list'" class="button">목록</button>#}
                 {% if post.user == request.user %}
-                    <a href="/qnaboard/update/{{ post.id }}" class="button secondary">수정</a>
-                    <a href="/qnaboard/delete/{{ post.id }}" class="button delete">삭제</a>
+                    {#                    <a href="/qnaboard/update/{{ post.id }}" class="button secondary">수정</a>#}
+                    <button type="button"
+                            onclick="location.href='/qnaboard/update/{{ post.id }}'"
+                            class="button secondary">수정</button>
+                    <button type="button"
+                            onclick="location.href='/qnaboard/list'"
+                            class="button list">목록</button>
+                    <button type="button"
+                            onclick="location.href='/qnaboard/delete/{{ post.id }}'"
+                            class="button delete">삭제</button>
+                {% else %}
+                    <button type="button"
+                            onclick="location.href='/qnaboard/list'"
+                            class="button list">목록</button>
                 {% endif %}
-                <button type="button"
-                        onclick="location.href='/qnaboard/list'"
-                        class="btn-write">목록</button>
             </div>
         {% else %}
             <p class="error-message">해당 게시글을 찾을 수 없습니다.</p>

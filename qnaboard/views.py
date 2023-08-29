@@ -4,20 +4,39 @@ from django.http import HttpResponse
 
 from django.shortcuts import render, redirect, get_object_or_404
 
-from qnaboard.forms import PostForm, CommentForm
+from qnaboard.forms import PostForm, CommentForm, SearchForm
 from qnaboard.models import Post, Comment
+
+from django.db.models import Q
 
 
 # QnA 게시글 목록 조회
 def qb_list(request):
     posts = Post.objects.all().order_by("-qb_date")
 
+    # 검색 기능
+    search_form = SearchForm(request.GET)
+    query = request.GET.get("query")
+
+    if query:
+        posts = Post.objects.filter(
+            Q(qb_title__icontains=query) | Q(qb_content__icontains=query)
+        ).order_by("-qb_date")
+    else:
+        posts = Post.objects.all().order_by("-qb_date")
+
     # 페이징 처리
     paginator = Paginator(posts, 7)
     page = request.GET.get("page", 1)
     page_obj = paginator.get_page(page)
 
-    context = {"posts": page_obj}
+
+    context = {
+        "posts": page_obj,
+        "search_form": search_form,
+        "query": query,
+        "page_title": "QnA 목록",
+    }
 
     return render(request, "qnaboard/qna_list.html", context)
 
@@ -30,7 +49,11 @@ def qb_read(request, post_id):
         return HttpResponse("해당 게시물을 찾을 수 없습니다.")
 
     comments = Comment.objects.filter(post=post)
-    context = {"post": post, "comments": comments}
+    context = {
+        "post": post,
+        "comments": comments,
+        "page_title": "Title - " + post.qb_title,
+    }
 
     # 조회 수 증가
     post.qb_view_count += 1
@@ -70,7 +93,11 @@ def qb_create(request):
         else:
             post_form = PostForm()
 
-        return render(request, "qnaboard/qna_create.html", {"post_form": post_form})
+        return render(
+            request,
+            "qnaboard/qna_create.html",
+            {"post_form": post_form, "page_title": "QnA 작성"},
+        )
 
 
 # QnA 게시글 수정
@@ -89,7 +116,11 @@ def qb_update(request, post_id):
     else:
         post_form = PostForm(instance=post, user=request.user)
 
-    return render(request, "qnaboard/qna_update.html", {"updateForm": post_form})
+    return render(
+        request,
+        "qnaboard/qna_update.html",
+        {"updateForm": post_form, "page_title": "QnA 수정"},
+    )
 
 
 # QnA 게시글 삭제

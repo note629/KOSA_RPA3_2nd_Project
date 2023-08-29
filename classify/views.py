@@ -156,8 +156,8 @@ def image_upload(request):
             form = ClassifyForm()  # request.method 가 'GET'인 경우
 
         context = {
-            # "results": results,이것
-            "form": form
+            "form": form,
+            "page_title": "분류 이미지 업로드",
         }
         return render(request, "classify/classify.html", context)
 
@@ -255,6 +255,7 @@ def classify_yolo(request):
                     "results_tip": results_tip,
                     "img_url": unquote("/media/classify_img/" + image_file),
                     "latest_log": latest_log,
+                    "page_title": "분류 결과",
                 }
             else:
                 context = {
