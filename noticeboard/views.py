@@ -16,7 +16,10 @@ def nb_list(request):
     page = request.GET.get("page", 1)
     page_obj = paginator.get_page(page)
 
-    context = {"notices": page_obj}
+    context = {
+        "notices": page_obj,
+        "page_title": "공지사항 목록",
+    }
 
     return render(request, "noticeboard/notice_list.html", context)
 
@@ -24,7 +27,10 @@ def nb_list(request):
 # notice 게시글 상세 조회
 def nb_read(request, notice_id):
     notice = Notice.objects.get(id=notice_id)
-    context = {"notice": notice}
+    context = {
+        "notice": notice,
+        "page_title": "Title - " + notice.nb_title,
+    }
 
     # 조회 수 증가
     notice.nb_view_count += 1
@@ -51,7 +57,9 @@ def nb_create(request):
             notice_form = NoticeForm()
 
         return render(
-            request, "noticeboard/notice_create.html", {"notice_form": notice_form}
+            request,
+            "noticeboard/notice_create.html",
+            {"notice_form": notice_form, "page_title": "공지사항 작성"},
         )
 
 
@@ -73,7 +81,9 @@ def nb_update(request, notice_id):
         notice_form = NoticeForm(instance=notice)
 
     return render(
-        request, "noticeboard/notice_update.html", {"updateForm": notice_form}
+        request,
+        "noticeboard/notice_update.html",
+        {"updateForm": notice_form, "page_title": "공지사항 수정"},
     )
 
 

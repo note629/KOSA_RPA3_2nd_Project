@@ -53,10 +53,12 @@ def user_rank(request):
             "all_user_rank_list": all_user_rank_list,
             "current_user_data": current_user_data,
             "current_user_rank": current_user_rank + 1,
+            "page_title": "사용자 분리수거 순위",
         }
     else:
         context = {
             "all_user_rank_list": all_user_rank_list,
+            "page_title": "사용자 분리수거 순위",
         }
 
     # return render(request, "activity/ranktest.html", context)
@@ -114,6 +116,7 @@ def recycle_log_status(request):
             month_null_logs_num,
         ],
         "month_logs_num_list": month_logs_num_list13,
+        "page_title": "월간 분리수거 통계",
     }
 
     return render(request, "activity/status.html", context)
@@ -141,7 +144,10 @@ def gallery_view(request):
 
     post_id = request.POST.get("gallerylog_id")
     print(post_id)
-    context = {"img_and_name_lists": img_and_name_lists}
+    context = {
+        "img_and_name_lists": img_and_name_lists,
+        "page_title": "최고의 쓰레기 갤러리",
+    }
     return render(request, "activity/gallery.html", context)
 
 
