@@ -23,23 +23,25 @@
 
         <br />
         <br />
-        <h1 class="rank_title">{{ request.user.username }} 님의 랭킹</h1>
-        <table>
-            <tr class="table_top">
-                <th>회원 랭크</th>
-                <th>회원 이름</th>
-                <th>분리수거 점수</th>
-                <th>최근 분리수거 이용 날짜</th>
-            </tr>
-            {% if current_user_data %}
+        {% if current_user_data %}
+            <h1 class="rank_title">{{ request.user.username }} 님의 랭킹</h1>
+            <table>
+                <tr class="table_top">
+                    <th>회원 랭크</th>
+                    <th>회원 이름</th>
+                    <th>분리수거 점수</th>
+                    <th>최근 분리수거 이용 날짜</th>
+                </tr>
+
                 <tr class="tr_user">
                     <td>{{ current_user_rank }}</td>
                     <td>{{ current_user_data.1 }}</td>
                     <td>{{ current_user_data.0 }}</td>
                     <td>{{ current_user_data.2.use_date|date:'Y-m-d H:i' }}</td>
                 </tr>
-            {% endif %}
-        </table>
+
+            </table>
+        {% endif %}
     </div>
 
 

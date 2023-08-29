@@ -3,6 +3,7 @@
 
 {% block html_header %}
     <link rel="stylesheet" href="{% static '/css/board_read.css' %}">
+    <link rel="stylesheet" href="{% static '/css/comments_css.css' %}">
 {% endblock %}
 
 {% block html_body %}
@@ -43,6 +44,49 @@
         {% endif %}
     </div>
 
+    <div style="margin-top: 40px;"></div>
+
+    <!-- 댓글 목록 -->
+    <div class="comment-list-container">
+        {% for comment in comments %}
+            <div class="comment">
+                <div class="comment-details">
+                    <div class="comment-user">
+                        <p>작성자 : {{ comment.user }}</p>
+                    </div>
+                    <div class="comment-date">
+                        <p>작성일 : {{ comment.qc_date|date:'Y-m-d H:i' }}</p>
+                    </div>
+                </div>
+                <div class="comment-content">
+                    <p>{{ comment.qc_content }}</p>
+                </div>
+                {% if comment.user == request.user %}
+                    <a href="{% url "qnaboard:delete_comment" post.id comment.id %}">
+                        <button class="comment-delete-button">삭제</button>
+                    </a>
+                {% endif %}
+            </div>
+            {% if comment.user == request.user %}
+                <div class="comment-update-form-container comment-list-container ">
+
+                    <span class="comment-update-span">&#8627; 수정 내용:</span>
+                    <form action="{% url "qnaboard:update_comment" post.id comment.id %}"
+                          method="post"
+                          class="comment-form">
+                        {% csrf_token %}
+                        {#                    {{ update_comment_form.as_p }}#}
+                        <input type="text" id="comment_content" name="comment_content" />
+                        <label for="comment_content"></label>
+                        <button type="submit" class="comment-update-button">수정</button>
+                    </form>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div style="margin-top: 60px;"></div>
+
     <!-- 댓글 작성 폼 -->
     {% if request.user.is_authenticated %}
         <div class="comment-form-container">
@@ -54,26 +98,5 @@
         </div>
     {% endif %}
 
-    <!-- 댓글 목록 -->
-    <div class="comment-list-container">
-        {% for comment in comments %}
-            <div class="comment">
-                <div class="comment-details">
-                    <p class="comment-user">{{ comment.user }}</p>
-                    <p class="comment-content">{{ comment.qc_content }}</p>
-                    <p class="comment-date">{{ comment.qc_date }}</p>
-                    {% if comment.user == request.user %}
-                        <form action="{% url "qnaboard:update_comment" post.id comment.id %}"
-                              method="post">
-                            {% csrf_token %}
-                            {#                    {{ update_comment_form.as_p }}#}
-                            <input type="text" id="comment_content" name="comment_content" />
-                            <button type="submit">수정</button>
-                        </form>
-                        <a href="{% url "qnaboard:delete_comment" post.id comment.id %}">X</a>
-                    {% endif %}
-                </div>
-            </div>
-        {% endfor %}
-    </div>
+    <div style="margin-top: 40px;"></div>
 {% endblock %}
