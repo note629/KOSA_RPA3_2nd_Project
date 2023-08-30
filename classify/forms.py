@@ -3,7 +3,11 @@ from users.models import RecycleLog
 
 
 class ClassifyForm(forms.ModelForm):
-    widget = forms.FileInput(attrs={"class": "upload-form"})
+    widget = forms.FileInput(
+        attrs={
+            "class": "form-control",
+        }
+    )
 
     class Meta:  # 장고 모델 폼은 반드시 내부에 Meta 클래스 가져야 함
         model = RecycleLog
