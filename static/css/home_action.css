@@ -601,13 +601,6 @@ body {
   height: 100%;
 }
 
-.home_recycle_button:not(:last-child) {
-  margin-bottom: 2rem;
-  cursor:
-    url("/static/image/cursor_default.cur") 10 15,
-    not-allowed;
-}
-
 :root {
   --shadow-color: 208deg 22% 58%;
   --shadow-elevation-low: 0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.34),
@@ -629,19 +622,21 @@ body {
 
 .home_recycle_button {
   font-weight: bold;
-  /*border: none;*/
-  /*background: transparent;*/
+  border: none;
+  background: transparent;
   position: absolute;
   top: 75%;
   left: 44%;
   display: block;
-  /*align-items: center;*/
-  /*justify-content: center;*/
   padding: 1.4rem 2.2rem;
   overflow: hidden;
   border-radius: 100vmax;
   box-shadow: var(--shadow-elevation-high);
   transition: box-shadow 0.2s ease-in-out;
+}
+
+.home_recycle_button:not(:last-child) {
+  margin-bottom: 2rem;
   cursor:
     url("/static/image/cursor_default.cur") 10 15,
     not-allowed;

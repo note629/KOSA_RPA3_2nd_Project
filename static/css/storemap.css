@@ -24,17 +24,31 @@ body {
     not-allowed;
 }
 
+.storemap_title_text {
+  position: relative;
+  left: 40%;
+  color: #55654d;
+  font-weight: bold;
+  margin-bottom: 2%;
+  margin-top: 1%;
+}
+
 .map_section {
   width: 80%;
-  height: 100%;
+  height: 75%;
   margin: 0 auto;
+  border-radius: 40px;
+  border: dashed;
+  border-width: 10px;
+  border-color: #a6ca99;
 }
 
 #map_box {
   width: 100%;
-  height: 100%;
+  height: 117%;
   position: relative;
   overflow: hidden;
+  z-index: -1;
 }
 .map_wrap,
 .map_wrap * {
