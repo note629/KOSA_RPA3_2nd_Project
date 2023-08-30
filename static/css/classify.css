@@ -1,6 +1,7 @@
 body {
   position: fixed;
   width: 100%;
+  background-color: #f7f7f7;
 }
 
 .classify-section {
@@ -24,7 +25,7 @@ body {
 .square-result {
   display: flex;
   flex-direction: column;
-  width: 1600px;
+  width: 1200px;
   height: 800px;
   border-radius: 40px;
   border: dashed;
@@ -52,7 +53,7 @@ body {
   justify-content: space-around;
   position: relative;
   left: 0%;
-  transform: translate(0%, 0%);
+  transform: translate(-5%, 0%);
   font-weight: bold;
 }
 .result-img {
@@ -84,7 +85,7 @@ body {
   flex-direction: column;
   position: relative;
   left: 0%;
-  transform: translate(14%, 0%);
+  transform: translate(9%, 0%);
   font-weight: bold;
   color: #0a326a;
 }

@@ -38,7 +38,7 @@
 .nav-item {
   font-size: 2em;
   font-weight: bold;
-  color: #a6ca99;
+  color: #79936e;
 }
 
 .dropdown {
@@ -125,7 +125,7 @@
   line-height: 40px;
   text-decoration: none;
   color: white;
-  background-color: #c9e5bf;
+  background-color: rgba(166, 202, 153, 0.76);
   border-radius: 4px;
   /*position: absolute;*/
   width: 80px;
