@@ -1,6 +1,3 @@
-.btn {
-  margin: 1rem;
-}
 .btn-ghost {
   --btn-color: var(--btn-bg);
   --btn-border: 1px solid var(--btn-bg);
@@ -21,6 +18,7 @@
   --btn-bg: var(--primary-color-lighter);
 }
 .btn {
+  margin: 1rem;
   --btn-padding: 0.75rem 1.25rem;
   --btn-border: 1px solid var(--secondary-color);
   --btn-radius: 4px;
@@ -31,9 +29,16 @@
   border: var(--btn-border);
   border-radius: var(--btn-radius);
   white-space: nowrap;
-  cursor: pointer;
 }
-button,
+
+.btn:hover,
+.btn-primary:hover,
+.btn-ghost:hover {
+  cursor:
+    url("/static/image/cursor_default.cur") 10 15,
+    not-allowed;
+}
+
 input,
 optgroup,
 select,

@@ -176,3 +176,11 @@ li {
 .tgl-skewed:checked + .tgl-btn:active:after {
   left: 10%;
 }
+
+.tgl-btn:hover,
+.tgl-skewed:checked + .tgl-btn:hover {
+  cursor:
+    url("/static/image/cursor_default.cur") 10 15,
+    not-allowed;
+  background: mediumvioletred;
+}

@@ -601,15 +601,6 @@ body {
   height: 100%;
 }
 
-.home_recycle_button {
-  border: none;
-  background: transparent;
-  cursor: pointer;
-}
-.home_recycle_button:not(:last-child) {
-  margin-bottom: 2rem;
-}
-
 :root {
   --shadow-color: 208deg 22% 58%;
   --shadow-elevation-low: 0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.34),
@@ -631,33 +622,46 @@ body {
 
 .home_recycle_button {
   font-weight: bold;
-  /*border: none;*/
-  /*background: t ransparent;*/
+  border: none;
+  background: transparent;
   position: absolute;
   top: 75%;
   left: 44%;
   display: block;
-  /*align-items: center;*/
-  /*justify-content: center;*/
   padding: 1.4rem 2.2rem;
   overflow: hidden;
   border-radius: 100vmax;
   box-shadow: var(--shadow-elevation-high);
   transition: box-shadow 0.2s ease-in-out;
 }
+
+.home_recycle_button:not(:last-child) {
+  margin-bottom: 2rem;
+  cursor:
+    url("/static/image/cursor_default.cur") 10 15,
+    not-allowed;
+}
+
 .home_recycle_button::after,
 .home_recycle_button::before {
   content: "";
   position: absolute;
   inset: 0;
   background-color: red;
+  cursor:
+    url("/static/image/cursor_default.cur") 10 15,
+    not-allowed;
 }
+
 .home_recycle_button::before {
   z-index: 1;
   right: -100%;
   background: linear-gradient(to right, #a6ca99 0%, #b0daff 50%, #a6ca99 100%);
   background-size: 50% 100%;
   animation: scroll 1.2s infinite linear;
+  cursor:
+    url("/static/image/cursor_default.cur") 10 15,
+    not-allowed;
 }
 .home_recycle_button::after {
   z-index: 2;
@@ -665,17 +669,29 @@ body {
   border-radius: 100vmax;
   background-color: #5e7d52;
   transition: inset 0.2s ease-in-out;
+  cursor:
+    url("/static/image/cursor_default.cur") 10 15,
+    not-allowed;
 }
 .home_recycle_button span {
   z-index: 3;
   color: white;
   text-transform: uppercase;
+  cursor:
+    url("/static/image/cursor_default.cur") 10 15,
+    not-allowed;
 }
 .home_recycle_button:hover {
   box-shadow: var(--shadow-elevation-medium);
+  cursor:
+    url("/static/image/cursor_default.cur") 10 15,
+    not-allowed;
 }
 .home_recycle_button:hover::after {
   inset: 8px;
+  cursor:
+    url("/static/image/cursor_default.cur") 10 15,
+    not-allowed;
 }
 
 @keyframes scroll {

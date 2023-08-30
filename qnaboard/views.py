@@ -26,7 +26,7 @@ def qb_list(request):
         posts = Post.objects.all().order_by("-qb_date")
 
     # 페이징 처리
-    paginator = Paginator(posts, 7)
+    paginator = Paginator(posts, 5)
     page = request.GET.get("page", 1)
     page_obj = paginator.get_page(page)
 

@@ -113,6 +113,9 @@
 
 .comment-submit-button:hover {
   background-color: #0056b3;
+  cursor:
+    url("/static/image/cursor_default.cur") 10 15,
+    not-allowed;
 }
 
 /*댓글 수정 버튼 관련 스타일*/
@@ -128,6 +131,9 @@
 
 .comment-update-button:hover {
   background-color: #333;
+  cursor:
+    url("/static/image/cursor_default.cur") 10 15,
+    not-allowed;
 }
 
 /*댓글 삭제 버튼 관련 스타일*/
@@ -144,4 +150,7 @@
 
 .comment-delete-button:hover {
   background-color: #b71c0c;
+  cursor:
+    url("/static/image/cursor_default.cur") 10 15,
+    not-allowed;
 }

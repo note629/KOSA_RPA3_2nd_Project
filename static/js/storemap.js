@@ -1,5 +1,8 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 //Kakao 지도 API
+
+var map;
+var marker;
 $(document).ready(function () {
   // Kakao 지도 API
   var myLocation = "";
@@ -27,14 +30,11 @@ $(document).ready(function () {
     console.log("실패");
   }
 
-  var map = null;
-  var marker = null;
-
   function initMap() {
     var markers = [];
 
     // 지도를 생성합니다
-    var map = new kakao.maps.Map(
+    map = new kakao.maps.Map(
       (mapContainer = document.getElementById("map_box")), // 지도를 표시할 div
       (mapOption = {
         center: new kakao.maps.LatLng(
@@ -134,6 +134,10 @@ $(document).ready(function () {
 
           itemEl.onmouseover = function () {
             displayInfowindow(marker, title);
+
+            // 마우스 오버시 해당 위치로 지도 중심 이동 및 줌 레벨 조정
+            map.setCenter(marker.getPosition());
+            map.setLevel(8);
           };
 
           itemEl.onmouseout = function () {

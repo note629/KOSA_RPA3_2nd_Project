@@ -66,6 +66,12 @@ h3 {
 .btn-counter {
   margin-right: 39px;
 }
+
+.btn-counter:hover {
+  cursor:
+    url("/static/image/cursor_default.cur") 10 15,
+    not-allowed;
+}
 .btn-counter:after,
 .btn-counter:hover:after {
   text-shadow: none;
@@ -113,6 +119,9 @@ h3 {
   text-shadow: 0 1px 0 #b12f27;
   background-color: #f64136;
   border-color: #b12f27;
+  cursor:
+    url("/static/image/cursor_default.cur") 10 15,
+    not-allowed;
 }
 .btn:active {
   box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.2) inset;
