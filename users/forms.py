@@ -70,6 +70,9 @@ class MypageForm(UserChangeForm):
                 "minlength": "2",
             }
         ),
+        error_messages={
+            "unique": "이미 사용 중인 닉네임입니다.",
+        },
     )
     email = forms.EmailField(
         label="이메일",
@@ -78,6 +81,9 @@ class MypageForm(UserChangeForm):
                 "class": "form-control",
             }
         ),
+        error_messages={
+            "unique": "이미 사용 중인 이메일입니다.",
+        },
     )
 
     class Meta:

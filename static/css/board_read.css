@@ -72,6 +72,9 @@
   background-color: #99ba8b;
   color: #fff;
   border-color: #005a00; /* 호버 효과 시 초록색 테두리로 변경 */
+  cursor:
+    url("/static/image/cursor_default.cur") 10 15,
+    not-allowed;
 }
 
 /* 버튼 스타일 */
@@ -94,6 +97,9 @@
   background-color: #005a00ff;
   color: #fff;
   border: 1px solid #278604;
+  cursor:
+    url("/static/image/cursor_default.cur") 10 15,
+    not-allowed;
 }
 
 /*삭제*/
@@ -106,6 +112,9 @@
   background-color: #005a00ff;
   color: #fff;
   border: 1px solid #005a00ff;
+  cursor:
+    url("/static/image/cursor_default.cur") 10 15,
+    not-allowed;
 }
 
 /*목록*/
@@ -119,4 +128,7 @@
   background-color: #005a00ff;
   color: #fff;
   border: 1px solid #005a00ff;
+  cursor:
+    url("/static/image/cursor_default.cur") 10 15,
+    not-allowed;
 }

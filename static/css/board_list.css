@@ -44,7 +44,9 @@ body {
   color: #99ba8b;
   border: 1px solid #278604; /* 초록색 테두리 추가 */
   border-radius: 4px;
-  cursor: pointer;
+  cursor:
+    url("/static/image/cursor_default.cur") 10 15,
+    not-allowed;
   transition: background-color 0.3s ease;
   float: right; /* 버튼을 오른쪽으로 이동 */
   --bs-btn-active-bg: #278604;
@@ -55,6 +57,9 @@ body {
   background-color: #99ba8b;
   color: #fff;
   border-color: #005a00; /* 호버 효과 시 초록색 테두리로 변경 */
+  cursor:
+    url("/static/image/cursor_default.cur") 10 15,
+    not-allowed;
 }
 
 .scroll-window-wrapper {
@@ -177,7 +182,9 @@ body {
   vertical-align: middle;
   -ms-touch-action: manipulation;
   touch-action: manipulation;
-  cursor: pointer;
+  cursor:
+    url("/static/image/cursor_default.cur") 10 15,
+    not-allowed;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -192,6 +199,12 @@ body {
   -ms-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s;
+}
+
+.btnn:hover {
+  cursor:
+    url("/static/image/cursor_default.cur") 10 15,
+    not-allowed;
 }
 
 .btn-dark {

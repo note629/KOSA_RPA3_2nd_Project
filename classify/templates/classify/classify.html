@@ -4,6 +4,7 @@
     <link href="/static/css/button.css" rel="stylesheet">
 {% endblock %}
 {% block html_body %}
+    <h1 class="classify_title_text">재활용 분류기(Image Upload)</h1>
     <section class="classify-section">
         <div class="square">
             <form method="post" enctype="multipart/form-data" class="classify-form">
@@ -14,12 +15,9 @@
                     {{ form.as_p }}
                     <button class="btn btn-primary btn-ghost" type="submit">업로드</button>
                 </div>
-
-
             </form>
-        </form>
-    </div>
-</section>
-<!-- Add this script to handle the Drag & Drop -->
-<script src="/static/js/classify.js"></script>
+        </div>
+    </section>
+    <!-- Add this script to handle the Drag & Drop -->
+    <script src="/static/js/classify.js"></script>
 {% endblock %}

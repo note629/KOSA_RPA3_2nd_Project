@@ -1,3 +1,9 @@
+* {
+  cursor:
+    url("/static/image/cursor_default.cur") 10 15,
+    not-allowed;
+}
+
 .bg-maintheme {
   background-color: #a6ca99;
 }
