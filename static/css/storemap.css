@@ -37,7 +37,6 @@ body {
   width: 80%;
   height: 75%;
   margin: 0 auto;
-  border-radius: 40px;
   border: dashed;
   border-width: 10px;
   border-color: #a6ca99;
@@ -48,7 +47,7 @@ body {
   height: 117%;
   position: relative;
   overflow: hidden;
-  z-index: -1;
+  z-index: 0;
 }
 .map_wrap,
 .map_wrap * {
