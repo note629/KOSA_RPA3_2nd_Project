@@ -7,12 +7,12 @@
 {% block html_body %}
     <div class="container">
         <h1 class="page-title">공지사항</h1>
-        {#        <h5 class="page-description">공지 사항 알림 게시판이이에요</h5>#}
+        {#        <h5 class="page-description">공지 사항 알림 게시판이에요</h5>#}
         <br>
 
         <!-- 글쓰기 버튼을 추가하고 링크 생성 -->
         <div class="btn-container">
-            <h5 class="page-description">공지 사항 알림 게시판이이에요</h5>
+            <h5 class="page-description">공지 사항 알림 게시판이에요</h5>
             {% if request.user.is_superuser %}
                 <a href="{% url 'noticeboard:create' %}"
                    class="btn btn-primary btn-write">공지 작성</a>
