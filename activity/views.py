@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from activity.models import GalleryLog, GalleryLikes
 from users.models import User, RecycleLog
-from datetime import datetime
+from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
 
 
@@ -83,7 +83,7 @@ def recycle_log_status(request):
     # 한 달 이전에 대한 계산을 위해 dateutil 라이브러리 필요
     # pip install python-dateutil
     now_date = datetime.now()
-    end_date = datetime(now_date.year, now_date.month, now_date.day + 1)
+    end_date = datetime(now_date.year, now_date.month, now_date.day) + timedelta(days=1)
     start_date = end_date - relativedelta(months=1)
     month_logs_num_list52 = []
     for i in range(52):
