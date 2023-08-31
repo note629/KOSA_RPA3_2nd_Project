@@ -72,7 +72,7 @@ section {
 }
 .square {
   width: 1500px;
-  height: 800px;
+  height: 810px;
   display: flex;
   flex-direction: column;
   border-radius: 40px;
