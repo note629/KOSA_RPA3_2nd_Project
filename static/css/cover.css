@@ -161,7 +161,7 @@
     0 5px 5px 1px rgba(0, 0, 0, 0.4);
 }
 .nav_button:active {
-  margin-top: -0.01px;
+  margin-top: 11px;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
